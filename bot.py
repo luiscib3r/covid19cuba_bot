@@ -77,6 +77,20 @@ def send_casos_extranjeros(message):
 
     bot.send_photo(cid, open('casos_extranjeros.png', 'rb'))
 
+@bot.message_handler(commands=['nacionalidad'])
+def send_nacionalidad(message):
+    cid = message.chat.id
+
+    nacionalidad_graph = requests.get(config.api_url + '/nacionalidad').content
+    data = requests.get(config.api_url + '/nacionalidad_text').json()
+
+    with open('nacionalidad.png', 'wb') as f:
+        f.write(nacionalidad_graph)
+
+    texto = 'Cubanos: {} | Extranjeros {}'.format(data['Cubanos'], data['Extranjeros'])
+
+    bot.send_photo(cid, open('nacionalidad.png', 'rb'), texto)
+
 import time
 import sys
 

@@ -7,16 +7,7 @@ import requests
 bot = telebot.TeleBot(config.token)
 
 def summary():
-    message = '''
-    
-    Diagnosticados: {}
-    Activos: {}
-    Recuperados: {}
-    Evacuados: {}
-    Muertes: {}
-    Actualizado: {}
-    
-    '''
+    message = "Diagnosticados: {}\nActivos: {}\nRecuperados: {}\nEvacuados: {}\nMuertes: {}\nActualizado: {}"
 
     data = requests.get(config.api_url + '/summary').json()
 

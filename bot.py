@@ -55,6 +55,17 @@ def send_sexo(message):
 
     bot.send_photo(cid, open('sexo.png', 'rb'), texto)
 
+@bot.message_handler(commands=['modo'])
+def send_modo(message):
+    cid = message.chat.id
+
+    modo_graph = requests.get(config.api_url + '/modo').content
+
+    with open('modo.png', 'wb') as f:
+        f.write(modo_graph)
+
+    bot.send_photo(cid, open('modo.png', 'rb'))
+
 import time
 import sys
 

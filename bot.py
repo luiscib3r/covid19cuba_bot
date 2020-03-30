@@ -66,6 +66,17 @@ def send_modo(message):
 
     bot.send_photo(cid, open('modo.png', 'rb'))
 
+@bot.message_handler(commands=['casos_extranjeros'])
+def send_casos_extranjeros(message):
+    cid = message.chat.id
+
+    casos_extranjeros_graph = requests.get(config.api_url + '/casos_extranjeros').content
+
+    with open('casos_extranjeros.png', 'wb') as f:
+        f.write(casos_extranjeros_graph)
+
+    bot.send_photo(cid, open('casos_extranjeros.png', 'rb'))
+
 import time
 import sys
 

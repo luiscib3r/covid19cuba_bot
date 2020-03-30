@@ -23,11 +23,22 @@ def summary():
     
 
 @bot.message_handler(commands=['start', 'summary'])
-def send_welcome(message):
+def send_summary(message):
     bot.reply_to(
         message,
         summary()
     )
+
+@bot.message_handler(commands=['evolution'])
+def send_evolution(message):
+    cid = message.chat.id
+
+    evolution_graph = requests.get(config.api_url + '/evolution').content
+
+    with open('evolution.png', 'wb') as f:
+        f.write(evolution_graph)
+
+    bot.send_photo(cid, open('evolution.png', 'rb'))
 
 import time
 import sys

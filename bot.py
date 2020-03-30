@@ -7,7 +7,7 @@ import requests
 bot = telebot.TeleBot(config.token)
 
 def summary():
-    message = "Diagnosticados: {}\nActivos: {}\nRecuperados: {}\nEvacuados: {}\nMuertes: {}\nActualizado: {}"
+    message = "Diagnosticados: {}\nActivos: {}\nRecuperados: {}\nEvacuados: {}\nFallecidos: {}\nIngresados {}\nActualizado: {}"
 
     data = requests.get(config.api_url + '/summary').json()
 
@@ -17,6 +17,7 @@ def summary():
         data['Recuperados'],
         data['Evacuados'],
         data['Muertes'],
+        data['Ingresados']
         data['Updated'],
     )
 
@@ -24,10 +25,24 @@ def summary():
 
 @bot.message_handler(commands=['start', 'summary'])
 def send_summary(message):
+    cid = message.chat.id
+
     bot.reply_to(
         message,
         summary()
     )
+
+    graph1 = requests.get(config.api_url + '/summary_graph1').content
+    graph2 = requests.get(config.api_url + '/summary_graph2').content
+
+    with open('summary1.png', 'wb') as f:
+        f.write(graph1)
+
+    with open('summary2.png', 'wb') as f:
+        f.write(graph2)
+
+    bot.send_photo(cid, open('summary1.png', 'rb'))
+    bot.send_photo(cid, open('summary2.png', 'rb'))
 
 @bot.message_handler(commands=['evolution'])
 def send_evolution(message):

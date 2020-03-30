@@ -102,6 +102,17 @@ def send_edad(message):
 
     bot.send_photo(cid, open('edad.png', 'rb'))
 
+@bot.message_handler(commands=['test'])
+def send_test(message):
+    cid = message.chat.id
+
+    test_graph = requests.get(config.api_url + '/test').content
+
+    with open('test.png', 'wb') as f:
+        f.write(test_graph)
+
+    bot.send_photo(cid, open('test.png', 'rb'))
+
 import time
 import sys
 

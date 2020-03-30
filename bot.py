@@ -7,8 +7,7 @@ import requests
 bot = telebot.TeleBot(config.token)
 
 def summary():
-    message = '''
-        Diagnosticados: {}
+    message = '''Diagnosticados: {}
     Activos: {}
     Recuperados: {}
     Evacuados: {}

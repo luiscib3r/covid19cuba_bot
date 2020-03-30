@@ -9,11 +9,11 @@ bot = telebot.TeleBot(config.token)
 def summary():
     message = '''
         Diagnosticados: {}
-        Activos: {}
-        Recuperados: {}
-        Evacuados: {}
-        Muertes: {}
-        Actualizado: {}
+    Activos: {}
+    Recuperados: {}
+    Evacuados: {}
+    Muertes: {}
+    Actualizado: {}
     '''
 
     data = requests.get(config.api_url + '/summary').json()

@@ -16,7 +16,7 @@ def summary():
     Actualizado: {}
     '''
 
-    data = requests(config.api_url + '/summary').json()
+    data = requests.get(config.api_url + '/summary').json()
 
     return message.format(
         data['Diagnosticados'],

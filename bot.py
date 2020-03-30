@@ -40,6 +40,21 @@ def send_evolution(message):
 
     bot.send_photo(cid, open('evolution.png', 'rb'))
 
+
+@bot.message_handler(commands=['sexo'])
+def send_sexo(message):
+    cid = message.chat.id
+
+    sexo_graph = requests.get(config.api_url + '/sexo').content
+    data = requests.get(config.api_url + '/sexo_text').json()
+
+    with open('sexo.png', 'wb') as f:
+        f.write(sexo_graph)
+
+    texto = 'Hombres: {} | Mujeres {}'.format(data['hombres'], data['mujeres'])
+
+    bot.send_photo(cid, open('sexo.png', 'rb'), texto)
+
 import time
 import sys
 

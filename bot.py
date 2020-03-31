@@ -17,7 +17,7 @@ def summary():
         data['Recuperados'],
         data['Evacuados'],
         data['Muertes'],
-        data['Ingresados']
+        data['Ingresados'],
         data['Updated'],
     )
 

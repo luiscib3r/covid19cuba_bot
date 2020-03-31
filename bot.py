@@ -145,11 +145,16 @@ def send_provincias(message):
     cid = message.chat.id
 
     provincias_graph = requests.get(config.api_url + '/provincias').content
+    municipios_graph = requests.get(config.api_url + '/municipios').content
 
     with open('provincias.png', 'wb') as f:
         f.write(provincias_graph)
 
+    with open('municipios.png', 'wb') as f:
+        f.write(municipios_graph)
+
     bot.send_photo(cid, open('provincias.png', 'rb'))
+    bot.send_photo(cid, open('municipios.png', 'rb'))
 
 import time
 import sys

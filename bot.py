@@ -27,6 +27,8 @@ def summary():
 def send_summary(message):
     cid = message.chat.id
 
+    bot.send_chat_action(cid, 'typing')
+
     bot.reply_to(
         message,
         summary()
@@ -48,6 +50,8 @@ def send_summary(message):
 def send_evolution(message):
     cid = message.chat.id
 
+    bot.send_chat_action(cid, 'typing')
+
     evolution_graph = requests.get(config.api_url + '/evolution').content
 
     with open('evolution.png', 'wb') as f:
@@ -59,6 +63,8 @@ def send_evolution(message):
 @bot.message_handler(commands=['sexo'])
 def send_sexo(message):
     cid = message.chat.id
+
+    bot.send_chat_action(cid, 'typing')
 
     sexo_graph = requests.get(config.api_url + '/sexo').content
     data = requests.get(config.api_url + '/sexo_text').json()
@@ -74,6 +80,8 @@ def send_sexo(message):
 def send_modo(message):
     cid = message.chat.id
 
+    bot.send_chat_action(cid, 'typing')
+
     modo_graph = requests.get(config.api_url + '/modo').content
 
     with open('modo.png', 'wb') as f:
@@ -85,6 +93,8 @@ def send_modo(message):
 def send_casos_extranjeros(message):
     cid = message.chat.id
 
+    bot.send_chat_action(cid, 'typing')
+
     casos_extranjeros_graph = requests.get(config.api_url + '/casos_extranjeros').content
 
     with open('casos_extranjeros.png', 'wb') as f:
@@ -95,6 +105,8 @@ def send_casos_extranjeros(message):
 @bot.message_handler(commands=['nacionalidad'])
 def send_nacionalidad(message):
     cid = message.chat.id
+
+    bot.send_chat_action(cid, 'typing')
 
     nacionalidad_graph = requests.get(config.api_url + '/nacionalidad').content
     data = requests.get(config.api_url + '/nacionalidad_text').json()
@@ -110,6 +122,8 @@ def send_nacionalidad(message):
 def send_edad(message):
     cid = message.chat.id
 
+    bot.send_chat_action(cid, 'typing')
+
     edad_graph = requests.get(config.api_url + '/edad').content
 
     with open('edad.png', 'wb') as f:
@@ -121,6 +135,8 @@ def send_edad(message):
 def send_test(message):
     cid = message.chat.id
 
+    bot.send_chat_action(cid, 'typing')
+
     test_graph = requests.get(config.api_url + '/test').content
 
     with open('test.png', 'wb') as f:
@@ -131,6 +147,8 @@ def send_test(message):
 @bot.message_handler(commands=['test'])
 def send_test(message):
     cid = message.chat.id
+
+    bot.send_chat_action(cid, 'typing')
 
     test_graph = requests.get(config.api_url + '/test').content
 
@@ -143,6 +161,8 @@ def send_test(message):
 @bot.message_handler(commands=['provincias'])
 def send_provincias(message):
     cid = message.chat.id
+
+    bot.send_chat_action(cid, 'typing')
 
     provincias_graph = requests.get(config.api_url + '/provincias').content
     municipios_graph = requests.get(config.api_url + '/municipios').content

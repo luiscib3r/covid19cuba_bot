@@ -53,11 +53,16 @@ def send_evolution(message):
     bot.send_chat_action(cid, 'typing')
 
     evolution_graph = requests.get(config.api_url + '/evolution').content
+    fallecidos_graph = requests.get(config.api_url + '/evolution_fallecidos').content
 
     with open('evolution.png', 'wb') as f:
         f.write(evolution_graph)
+    
+    with open('evolution_fallecidos.png', 'wb') as f:
+        f.write(fallecidos_graph)
 
     bot.send_photo(cid, open('evolution.png', 'rb'))
+    bot.send_photo(cid, open('evolution_fallecidos.png', 'rb'))
 
 
 @bot.message_handler(commands=['sexo'])

@@ -15,7 +15,7 @@ def notify():
     chats = mdb.allchats()
 
     for chat in chats:
-        bot.send_message(chat, 'ℹ️ La base de datos se ha actualizado\n' + summary())
+        bot.send_message(chat, 'ℹ️ La base de datos se ha actualizado\n\n' + summary())
 
     return jsonify({
         'message': 'notify'

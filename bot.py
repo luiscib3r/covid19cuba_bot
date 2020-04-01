@@ -9,12 +9,13 @@ import mdb
 bot = telebot.TeleBot(config.token)
 
 def summary():
-    message = "🤒 Diagnosticados: {}\n🤧 Activos: {}\n😃 Recuperados: {}\n🤩 Índice de Recuperación: {}%\n✈️ Evacuados: {}\n⚰️ Fallecidos: {}\n😵 Mortalidad: {}%\n🏥 Ingresados {}\n📆 Actualizado: {}\n\n Más Información en @covid19cubadata_bot"
+    message = "🤒 Diagnosticados: {}\n🔬 Diagnosticados hoy: {}\n🤧 Activos: {}\n😃 Recuperados: {}\n🤩 Índice de Recuperación: {}%\n✈️ Evacuados: {}\n⚰️ Fallecidos: {}\n😵 Mortalidad: {}%\n🏥 Ingresados {}\n📆 Actualizado: {}\n\n Más Información en @covid19cubadata_bot"
 
     data = requests.get(config.api_url + '/summary').json()
 
     return message.format(
         data['Diagnosticados'],
+        data['DiagnosticadosDay'],
         data['Activos'],
         data['Recuperados'],
         data['Recuperacion'],

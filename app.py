@@ -15,7 +15,7 @@ def notify():
     chats = mdb.allchats()
 
     for chat in chats:
-        bot.send_message(chat, 'Probando sistema de notificación automática. Cantidad de usuarios conectados {}'.format(len(chats)))
+        bot.send_message(chat, 'ℹ️ Probando sistema de notificación automática. Cantidad de usuarios conectados {}'.format(len(chats)))
 
 @server.route('/' + config.token, methods=['POST'])
 def getMessage():

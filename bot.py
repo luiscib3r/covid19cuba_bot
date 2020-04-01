@@ -192,8 +192,11 @@ def notifications(message):
     cid = message.chat.id
     mid = message.message_id
 
+    users = mdb.allchats()
+
     if str(cid) == str(config.admin):
-        bot.forward_message(config.admin, cid, mid)
+        for uid in users:
+            bot.forward_message(uid, cid, mid)
     else:
         bot.reply_to(message, 'Seleccione un comando de la lista [/]')
 

@@ -1,6 +1,6 @@
 import config
 
-from flask import Flask, request
+from flask import Flask, request, jsonify
 
 from bot import bot
 
@@ -16,6 +16,10 @@ def notify():
 
     for chat in chats:
         bot.send_message(chat, 'ℹ️ Probando sistema de notificación automática. Cantidad de usuarios conectados {}'.format(len(chats)))
+
+    return jsonify({
+        'message': 'notify'
+    })
 
 @server.route('/' + config.token, methods=['POST'])
 def getMessage():

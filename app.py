@@ -8,6 +8,8 @@ import telebot
 
 import mdb
 
+from telebot.apihelper import ApiException
+
 server = Flask(__name__)
 
 @server.route('/notify')
@@ -15,7 +17,10 @@ def notify():
     chats = mdb.allchats()
 
     for chat in chats:
-        bot.send_message(chat, 'ℹ️ La base de datos se ha actualizado\n\n' + summary())
+        try:
+            bot.send_message(chat, 'ℹ️ La base de datos se ha actualizado\n\n' + summary())
+        except ApiException:
+            mdb.removechat(chat)
 
     return jsonify({
         'message': 'notify'

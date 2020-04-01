@@ -20,3 +20,8 @@ def allchats():
     todos = chats.find()
 
     return [e['chatid'] for e in todos]
+
+def removechat(chatid):
+    chats = db.chats
+
+    chats.delete_one({'chatid': chatid})

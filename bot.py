@@ -183,7 +183,9 @@ def notify(message):
     cid = message.chat.id
     mid = message.message_id
 
-    bot.reply_to(message, 'CID: {} MID {}'.format(cid, mid))
+    cant_users = len(mdb.allchats())
+
+    bot.reply_to(message, 'CID: {} MID {} USERS {}'.format(cid, mid, cant_users))
 
 @bot.message_handler(content_types=['document', 'text', 'photo'])
 def notifications(message):

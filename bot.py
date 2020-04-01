@@ -178,6 +178,13 @@ def send_provincias(message):
     bot.send_photo(cid, open('provincias.png', 'rb'))
     bot.send_photo(cid, open('municipios.png', 'rb'))
 
+@bot.message_handler(commands=['notify'])
+def notify(message):
+    cid = message.chat.id
+    mid = message.message_id
+
+    bot.reply_to(message, 'CID: {} MID {}'.format(cid, mid))
+
 import time
 import sys
 

@@ -6,7 +6,16 @@ from bot import bot
 
 import telebot
 
+import mdb
+
 server = Flask(__name__)
+
+@server.route('/notify')
+def notify():
+    chats = mdb.allchats()
+
+    for chat in chats:
+        bot.send_message(chat, 'Probando sistema de notificación automática. Cantidad de usuarios conectados {}'.format(len(chats)))
 
 @server.route('/' + config.token, methods=['POST'])
 def getMessage():

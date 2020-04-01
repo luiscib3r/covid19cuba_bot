@@ -4,6 +4,8 @@ import telebot
 
 import requests
 
+import mdb
+
 bot = telebot.TeleBot(config.token)
 
 def summary():
@@ -28,6 +30,7 @@ def send_summary(message):
     cid = message.chat.id
 
     bot.send_chat_action(cid, 'typing')
+    mdb.savechat(cid)
 
     bot.reply_to(
         message,
@@ -51,6 +54,7 @@ def send_evolution(message):
     cid = message.chat.id
 
     bot.send_chat_action(cid, 'typing')
+    mdb.savechat(cid)
 
     evolution_graph = requests.get(config.api_url + '/evolution').content
     fallecidos_graph = requests.get(config.api_url + '/evolution_fallecidos').content
@@ -70,6 +74,7 @@ def send_sexo(message):
     cid = message.chat.id
 
     bot.send_chat_action(cid, 'typing')
+    mdb.savechat(cid)
 
     sexo_graph = requests.get(config.api_url + '/sexo').content
     data = requests.get(config.api_url + '/sexo_text').json()
@@ -86,6 +91,7 @@ def send_modo(message):
     cid = message.chat.id
 
     bot.send_chat_action(cid, 'typing')
+    mdb.savechat(cid)
 
     modo_graph = requests.get(config.api_url + '/modo').content
 
@@ -99,6 +105,7 @@ def send_casos_extranjeros(message):
     cid = message.chat.id
 
     bot.send_chat_action(cid, 'typing')
+    mdb.savechat(cid)
 
     casos_extranjeros_graph = requests.get(config.api_url + '/casos_extranjeros').content
 
@@ -112,6 +119,7 @@ def send_nacionalidad(message):
     cid = message.chat.id
 
     bot.send_chat_action(cid, 'typing')
+    mdb.savechat(cid)
 
     nacionalidad_graph = requests.get(config.api_url + '/nacionalidad').content
     data = requests.get(config.api_url + '/nacionalidad_text').json()
@@ -128,6 +136,7 @@ def send_edad(message):
     cid = message.chat.id
 
     bot.send_chat_action(cid, 'typing')
+    mdb.savechat(cid)
 
     edad_graph = requests.get(config.api_url + '/edad').content
 
@@ -141,6 +150,7 @@ def send_test(message):
     cid = message.chat.id
 
     bot.send_chat_action(cid, 'typing')
+    mdb.savechat(cid)
 
     test_graph = requests.get(config.api_url + '/test').content
 
@@ -148,26 +158,13 @@ def send_test(message):
         f.write(test_graph)
 
     bot.send_photo(cid, open('test.png', 'rb'))
-
-@bot.message_handler(commands=['test'])
-def send_test(message):
-    cid = message.chat.id
-
-    bot.send_chat_action(cid, 'typing')
-
-    test_graph = requests.get(config.api_url + '/test').content
-
-    with open('test.png', 'wb') as f:
-        f.write(test_graph)
-
-    bot.send_photo(cid, open('test.png', 'rb'))
-
 
 @bot.message_handler(commands=['provincias'])
 def send_provincias(message):
     cid = message.chat.id
 
     bot.send_chat_action(cid, 'typing')
+    mdb.savechat(cid)
 
     provincias_graph = requests.get(config.api_url + '/provincias').content
     municipios_graph = requests.get(config.api_url + '/municipios').content

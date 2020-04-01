@@ -2,3 +2,4 @@ pyTelegramBotApi
 flask
 gunicorn
 requests
+pymongo

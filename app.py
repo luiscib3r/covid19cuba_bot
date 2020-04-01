@@ -2,7 +2,7 @@ import config
 
 from flask import Flask, request, jsonify
 
-from bot import bot
+from bot import bot, summary
 
 import telebot
 
@@ -15,7 +15,7 @@ def notify():
     chats = mdb.allchats()
 
     for chat in chats:
-        bot.send_message(chat, 'ℹ️ Probando sistema de notificación automática. Cantidad de usuarios conectados {}'.format(len(chats)))
+        bot.send_message(chat, 'ℹ️ La base de datos se ha actualizado\n' + summary())
 
     return jsonify({
         'message': 'notify'

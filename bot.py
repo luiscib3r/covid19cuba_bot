@@ -9,7 +9,7 @@ import mdb
 bot = telebot.TeleBot(config.token)
 
 def summary():
-    message = "Diagnosticados: {}\nActivos: {}\nRecuperados: {}\nEvacuados: {}\nFallecidos: {}\nIngresados {}\nActualizado: {}"
+    message = "Diagnosticados: {}\nActivos: {}\nRecuperados: {}\nEvacuados: {}\nFallecidos: {}\nMortalidad {}%\nIngresados {}\nActualizado: {}"
 
     data = requests.get(config.api_url + '/summary').json()
 
@@ -19,6 +19,7 @@ def summary():
         data['Recuperados'],
         data['Evacuados'],
         data['Muertes'],
+        data['Mortalidad'],
         data['Ingresados'],
         data['Updated'],
     )

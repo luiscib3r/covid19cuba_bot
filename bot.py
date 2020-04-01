@@ -190,7 +190,7 @@ def notifications(message):
     cid = message.chat.id
     mid = message.message_id
 
-    if cid == config.admin:
+    if str(cid) == str(config.admin):
         bot.forward_message(config.admin, cid, mid)
     else:
         bot.reply_to(message, 'Seleccione un comando de la lista [/]')

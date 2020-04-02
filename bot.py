@@ -45,7 +45,7 @@ Github: https://github.com/covid19cuba/covid19cuba-app/releases/latest/download/
 
 https://github.com/correaleyval/covid19cuba_bot
 https://github.com/correaleyval/covid19cuba_api
-https://github.com/correaleyval/covid19cuba_async'''
+'''
 
 markup = types.ReplyKeyboardMarkup(row_width=1)
     

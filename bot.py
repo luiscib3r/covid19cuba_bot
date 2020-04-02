@@ -66,7 +66,6 @@ markup.add(
 @bot.message_handler(commands=['start'])
 def start_summary(message):
     cid = message.chat.id
-    print(message.from_user)
 
     bot.send_chat_action(cid, 'typing')
     mdb.savechat(cid)

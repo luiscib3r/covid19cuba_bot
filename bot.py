@@ -231,7 +231,7 @@ def notify(message):
 
     cant_users = len(mdb.allchats())
 
-    markup = types.ReplyKeyboardMarkup(row_width=1)
+    markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
     
     markup.add(
         types.KeyboardButton('☢️ Resumen'),
@@ -269,6 +269,9 @@ def texthandler(message):
         start_summary(message)
     elif text == '☣️ Resumen con Gráficos':
         send_summary(message)
+    elif text == '⏳ Evolución de casos por días':
+        send_evolution(message)
+    elif 
     elif str(cid) == str(config.admin):
         print(text)
         #Pool().apply_async(send_notifiation, args=(cid, text))

@@ -52,6 +52,7 @@ hide_keyboard = types.ReplyKeyboardRemove()
 @bot.message_handler(commands=['start'])
 def start_summary(message):
     cid = message.chat.id
+    print(message.from_user)
 
     bot.send_chat_action(cid, 'typing')
     mdb.savechat(cid)
@@ -72,8 +73,8 @@ def start_summary(message):
         types.KeyboardButton('ℹ️ Acerca de')
     )
 
-    bot.reply_to(
-        message,
+    bot.send_message(
+        cid,
         summary(),
         reply_markup=markup
     )
@@ -85,8 +86,8 @@ def about_handler(message):
     bot.send_chat_action(cid, 'typing')
     mdb.savechat(cid)
 
-    bot.reply_to(
-        message,
+    bot.send_message(
+        cid,
         about(),
         reply_markup=hide_keyboard
     )
@@ -98,8 +99,8 @@ def send_summary(message):
     bot.send_chat_action(cid, 'typing')
     mdb.savechat(cid)
 
-    bot.reply_to(
-        message,
+    bot.send_message(
+        cid,
         summary(),
         reply_markup=hide_keyboard
     )
@@ -268,8 +269,8 @@ def notify(message):
         types.KeyboardButton('ℹ️ Acerca de'),
     )
 
-    bot.reply_to(
-        message, 
+    bot.send_message(
+        cid, 
         'CID: {} MID {} USERS {}'.format(cid, mid, cant_users),
         reply_markup=markup
     )

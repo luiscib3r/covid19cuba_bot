@@ -47,7 +47,7 @@ def send_remember():
 
 @server.route('/remember')
 def remember():
-    Pool().apply_async(send_alert)
+    Pool().apply_async(send_remember)
 
     return jsonify({
         'message': 'remember',

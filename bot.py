@@ -233,24 +233,24 @@ def notify(message):
 
 from telebot.apihelper import ApiException
 
-def send_notifiation(cid, mid):
+def send_notifiation(cid, text):
     users = mdb.allchats()
 
     for uid in users:
         try:
-            bot.forward_message(uid, cid, mid)
+            bot.send_message(uid, text)
         except ApiException:
             mdb.removechat(uid)
 
 from multiprocessing import Pool
 
-@bot.message_handler(content_types=['document', 'text', 'photo'])
+@bot.message_handler(content_types=['text'])
 def notifications(message):
     cid = message.chat.id
-    mid = message.message_id
+    text = message.text
 
     if str(cid) == str(config.admin):
-        Pool().apply_async(send_notifiation, args=(cid, mid))
+        Pool().apply_async(send_notifiation, args=(cid, text))
 
 ### INLINE MODE
 

@@ -236,10 +236,10 @@ def notify(message):
 
     cant_users = len(mdb.allchats())
 
-    markup = types.ReplyKeyboardMarkup(row_width=2)
-    itembtn1 = types.KeyboardButton('Resumen')
-    itembtn2 = types.KeyboardButton('Evolución')
-    itembtn3 = types.KeyboardButton('Provincias')
+    markup = types.ReplyKeyboardMarkup(row_width=1)
+    itembtn1 = types.KeyboardButton('☢️ Resumen')
+    itembtn2 = types.KeyboardButton('☣️ Resumen con Gráficos')
+    itembtn3 = types.KeyboardButton('⏳ Evolución de casos por días')
     markup.add(itembtn1, itembtn2, itembtn3)
 
     bot.reply_to(

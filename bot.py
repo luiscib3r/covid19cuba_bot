@@ -26,7 +26,50 @@ def summary():
         data['Updated'],
     )
 
-@bot.message_handler(commands=['start', 'summary'])
+def about():
+    return '''Covid19 Cuba Data Telegram Bot 
+
+Web de Covid19 Cuba Data:
+
+🌐 https://covid19cubadata.github.io/
+🇨🇺 http://www.cusobu.nat.cu/covid/
+
+📲 Aplicación Movil:
+
+Apklis: https://www.apklis.cu/application/club.postdata.covid19cuba
+Github: https://github.com/covid19cuba/covid19cuba-app/releases/
+
+👨‍💻Bot Source Code:
+
+https://github.com/correaleyval/covid19cuba_bot
+https://github.com/correaleyval/covid19cuba_api
+https://github.com/correaleyval/covid19cuba_async'''
+
+@bot.message_handler(commands=['start'])
+def start_summary(message):
+    cid = message.chat.id
+
+    bot.send_chat_action(cid, 'typing')
+    mdb.savechat(cid)
+
+    bot.reply_to(
+        message,
+        summary()
+    )
+
+@bot.message_handler(commands=['about'])
+def about_handler(message):
+    cid = message.chat.id
+
+    bot.send_chat_action(cid, 'typing')
+    mdb.savechat(cid)
+
+    bot.reply_to(
+        message,
+        about()
+    )
+
+@bot.message_handler(commands=['summary'])
 def send_summary(message):
     cid = message.chat.id
 

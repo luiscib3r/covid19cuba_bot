@@ -45,6 +45,25 @@ def send_remember():
         except ApiException:
             mdb.removechat(chat)
 
+def send_claps():
+    message = '''Los nuevos super héroes merecen ser reverenciados. Gracias al  personal de salud por servir de ejército activo contra esta pandemia. Salgamos todos a dar un aplauso fuerte como merecen justo a las 9 pms'''
+
+    chats = mdb.allchats()
+
+    for chat in chats:
+        try:
+            bot.send_message(chat, message)
+        except ApiException:
+            mdb.removechat(chat)
+
+@server.route('/claps')
+def claps():
+    Pool().apply_async(send_claps)
+
+    return jsonify({
+        'message': 'remember',
+    })
+
 @server.route('/remember')
 def remember():
     Pool().apply_async(send_remember)

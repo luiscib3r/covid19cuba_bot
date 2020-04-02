@@ -240,6 +240,7 @@ def notify(message):
         types.KeyboardButton('📝 Datos de los Tests realizados'),
         types.KeyboardButton('🚻 Casos por Sexo'),
         types.KeyboardButton('👶🏻🧔🏽 Distribución por grupos etarios'),
+        types.KeyboardButton('🦠 Modo de Contagio')
     )
 
     bot.reply_to(

@@ -23,6 +23,25 @@ def send_notify():
         except ApiException:
             mdb.removechat(chat)
 
+import rmessages
+
+def send_alert():
+    chats = mdb.allchats()
+
+    for chat in chats:
+        try:
+            bot.send_message(chat, rmessages.getMessage())
+        except ApiException:
+            mdb.removechat(chat)
+
+@server.route('/alert')
+def alert():
+    Pool().apply_async(send_alert)
+
+    return jsonify({
+        'message': alert,
+    })
+
 @server.route('/notify')
 def notify():
     Pool().apply_async(send_notify)    

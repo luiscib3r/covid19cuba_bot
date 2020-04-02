@@ -231,16 +231,26 @@ def notify(message):
 
     bot.reply_to(message, 'CID: {} MID {} USERS {}'.format(cid, mid, cant_users))
 
+from telebot.apihelper import ApiException
+
+def send_notifiation(cid, mid):
+    users = mdb.allchats()
+
+    for uid in users:
+        try:
+            bot.forward_message(uid, cid, mid)
+        except ApiException:
+            mdb.removechat(uid)
+
+from multiprocessing import Pool
+
 @bot.message_handler(content_types=['document', 'text', 'photo'])
 def notifications(message):
     cid = message.chat.id
     mid = message.message_id
 
-    users = mdb.allchats()
-
     if str(cid) == str(config.admin):
-        for uid in users:
-            bot.forward_message(uid, cid, mid)
+        Pool().apply_async(send_notifiation, args=(cid, mid))
     else:
         bot.reply_to(message, 'Seleccione un comando de la lista [/]')
 

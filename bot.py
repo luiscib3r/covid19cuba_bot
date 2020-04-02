@@ -37,7 +37,7 @@ Web de Covid19 Cuba Data:
 📲 Aplicación Movil:
 
 Apklis: https://www.apklis.cu/application/club.postdata.covid19cuba
-Github: https://github.com/covid19cuba/covid19cuba-app/releases/
+Github: https://github.com/covid19cuba/covid19cuba-app/releases/latest/download/app.apk
 
 👨‍💻Bot Source Code:
 

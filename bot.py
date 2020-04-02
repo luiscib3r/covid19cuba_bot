@@ -239,8 +239,8 @@ def notify(message):
     markup = types.ReplyKeyboardMarkup(row_width=2)
     itembtn1 = types.KeyboardButton('Resumen')
     itembtn2 = types.KeyboardButton('Evolución')
-    itembtn2 = types.KeyboardButton('Provincias')
-    markup.add(itembtn1, itembtn2)
+    itembtn3 = types.KeyboardButton('Provincias')
+    markup.add(itembtn1, itembtn2, itembtn3)
 
     bot.reply_to(
         message, 

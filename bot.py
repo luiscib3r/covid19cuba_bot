@@ -131,8 +131,8 @@ def send_evolution(message):
     with open('evolution_fallecidos.png', 'wb') as f:
         f.write(fallecidos_graph)
 
-    bot.send_photo(cid, open('evolution.png', 'rb)
-    bot.send_photo(cid, open('evolution_fallecidos.png', 'rb)
+    bot.send_photo(cid, open('evolution.png', 'rb')
+    bot.send_photo(cid, open('evolution_fallecidos.png', 'rb')
 
 
 @bot.message_handler(commands=['sexo'])

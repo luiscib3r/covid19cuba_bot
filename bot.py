@@ -2,6 +2,8 @@ import config
 
 import telebot
 
+from telebot import types
+
 import requests
 
 import mdb
@@ -52,9 +54,15 @@ def start_summary(message):
     bot.send_chat_action(cid, 'typing')
     mdb.savechat(cid)
 
+    markup = types.ReplyKeyboardMarkup(row_width=2)
+    itembtn1 = types.KeyboardButton('Resumen')
+    itembtn2 = types.KeyboardButton('Evolución')
+    markup.add(itembtn1, itembtn2)
+
     bot.reply_to(
         message,
-        summary()
+        summary(),
+        reply_markup=markup
     )
 
 @bot.message_handler(commands=['about'])
@@ -253,8 +261,6 @@ def notifications(message):
         Pool().apply_async(send_notifiation, args=(cid, text))
 
 ### INLINE MODE
-
-from telebot import types
 
 @bot.inline_handler(lambda query: True)
 def query_text(inline_query):

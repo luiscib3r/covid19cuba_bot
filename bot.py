@@ -54,9 +54,26 @@ def start_summary(message):
     bot.send_chat_action(cid, 'typing')
     mdb.savechat(cid)
 
+    markup = types.ReplyKeyboardMarkup(row_width=1)
+    
+    markup.add(
+        types.KeyboardButton('☢️ Resumen'),
+        types.KeyboardButton('☣️ Resumen con Gráficos'),
+        types.KeyboardButton('⏳ Evolución de casos por días'),
+        types.KeyboardButton('📝 Datos de los Tests realizados'),
+        types.KeyboardButton('🇨🇺 Casos por provincias'),
+        types.KeyboardButton('🚻 Casos por Sexo'),
+        types.KeyboardButton('👶🏻🧔🏽 Distribución por grupos etarios'),
+        types.KeyboardButton('🦠 Modo de Contagio'),
+        types.KeyboardButton('🌏 Casos por Nacionalidad (Cubanos/Extranjeros)'),
+        types.KeyboardButton('🗺 Distribución por nacionalidad'),
+        types.KeyboardButton('ℹ️ Acerca de')
+    )
+
     bot.reply_to(
         message,
-        summary()
+        summary(),
+        reply_markup=markup
     )
 
 @bot.message_handler(commands=['about'])
@@ -243,7 +260,8 @@ def notify(message):
         types.KeyboardButton('👶🏻🧔🏽 Distribución por grupos etarios'),
         types.KeyboardButton('🦠 Modo de Contagio'),
         types.KeyboardButton('🌏 Casos por Nacionalidad (Cubanos/Extranjeros)'),
-        types.KeyboardButton('🗺 Distribución por nacionalidad')
+        types.KeyboardButton('🗺 Distribución por nacionalidad'),
+        types.KeyboardButton('ℹ️ Acerca de'),
     )
 
     bot.reply_to(
@@ -290,6 +308,8 @@ def texthandler(message):
         send_provincias(message)
     elif text == '🗺 Distribución por nacionalidad':
         send_casos_extranjeros(message)
+    elif text == 'ℹ️ Acerca de':
+        about_handler(message)
     elif str(cid) == str(config.admin):
         print(text)
         #Pool().apply_async(send_notifiation, args=(cid, text))

@@ -244,6 +244,28 @@ def notifications(message):
     else:
         bot.reply_to(message, 'Seleccione un comando de la lista [/]')
 
+
+### INLINE MODE
+
+from telebot import types
+
+@bot.inline_handler(lambda query: True)
+def query_text(inline_query):
+    try:
+        r = types.InlineQueryResultArticle(
+            '1',
+            'Covid19 Cuba Data',
+            types.InputTextMessageContent(
+                summary(),
+                parse_mode='HTML'
+            )
+        )
+
+        bot.answer_inline_query(inline_query.id, [r])
+    except Exception as e:
+        print(e)
+
+
 import time
 import sys
 

@@ -56,12 +56,31 @@ def send_claps():
         except ApiException:
             mdb.removechat(chat)
 
+def send_updating():
+    message = '''ℹ️ Se esta trabajando en la actualizacion de los datos se enviara una notificacion cuando este lista la informacion'''
+
+    chats = mdb.allchats()
+
+    for chat in chats:
+        try:
+            bot.send_message(chat, message)
+        except ApiException:
+            mdb.removechat(chat)
+
+@server.route('/updating')
+def updating():
+    Pool().apply_async(send_updating)
+
+    return jsonify({
+        'message': 'updating',
+    })
+
 @server.route('/claps')
 def claps():
     Pool().apply_async(send_claps)
 
     return jsonify({
-        'message': 'remember',
+        'message': 'claps',
     })
 
 @server.route('/remember')

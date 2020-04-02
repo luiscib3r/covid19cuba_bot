@@ -238,10 +238,12 @@ def notify(message):
         types.KeyboardButton('☣️ Resumen con Gráficos'),
         types.KeyboardButton('⏳ Evolución de casos por días'),
         types.KeyboardButton('📝 Datos de los Tests realizados'),
+        types.KeyboardButton('🇨🇺 Casos por provincias'),
         types.KeyboardButton('🚻 Casos por Sexo'),
         types.KeyboardButton('👶🏻🧔🏽 Distribución por grupos etarios'),
         types.KeyboardButton('🦠 Modo de Contagio'),
         types.KeyboardButton('🌏 Casos por Nacionalidad (Cubanos/Extranjeros)')
+        types.KeyboardButton('🗺 Distribución por nacionalidad')
     )
 
     bot.reply_to(
@@ -284,6 +286,10 @@ def texthandler(message):
         send_modo(message)
     elif text == '🌏 Casos por Nacionalidad (Cubanos/Extranjeros)':
         send_nacionalidad(message)
+    elif text == '🇨🇺 Casos por provincias':
+        send_provincias(message)
+    elif text == '🗺 Distribución por nacionalidad':
+        send_casos_extranjeros(message)
     elif str(cid) == str(config.admin):
         print(text)
         #Pool().apply_async(send_notifiation, args=(cid, text))

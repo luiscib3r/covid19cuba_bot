@@ -251,9 +251,6 @@ def notifications(message):
 
     if str(cid) == str(config.admin):
         Pool().apply_async(send_notifiation, args=(cid, mid))
-    else:
-        bot.reply_to(message, 'Seleccione un comando de la lista [/]')
-
 
 ### INLINE MODE
 

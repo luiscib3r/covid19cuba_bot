@@ -279,6 +279,8 @@ def texthandler(message):
         send_sexo(message)
     elif text == '👶🏻🧔🏽 Distribución por grupos etarios':
         send_edad(message)
+    elif text == '🦠 Modo de Contagio':
+        send_modo(message)
     elif str(cid) == str(config.admin):
         print(text)
         #Pool().apply_async(send_notifiation, args=(cid, text))

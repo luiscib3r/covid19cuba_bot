@@ -61,8 +61,7 @@ def start_summary(message):
 
     bot.reply_to(
         message,
-        summary(),
-        reply_markup=markup
+        summary()
     )
 
 @bot.message_handler(commands=['about'])

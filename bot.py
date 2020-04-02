@@ -237,7 +237,7 @@ def notify(message):
         types.KeyboardButton('☢️ Resumen'),
         types.KeyboardButton('☣️ Resumen con Gráficos'),
         types.KeyboardButton('⏳ Evolución de casos por días'),
-        types.KeyboardButton('📝  Datos de los Tests realizados'),
+        types.KeyboardButton('📝 Datos de los Tests realizados'),
         types.KeyboardButton('🚻 Casos por Sexo'),
         types.KeyboardButton('👶🏻🧔🏽 Distribución por grupos etarios'),
     )
@@ -272,8 +272,12 @@ def texthandler(message):
         send_summary(message)
     elif text == '⏳ Evolución de casos por días':
         send_evolution(message)
-    elif text == '📝  Datos de los Tests realizados':
+    elif text == '📝 Datos de los Tests realizados':
         send_test(message)
+    elif text == '🚻 Casos por Sexo':
+        send_sexo(message)
+    elif text == '👶🏻🧔🏽 Distribución por grupos etarios':
+        send_edad(message)
     elif str(cid) == str(config.admin):
         print(text)
         #Pool().apply_async(send_notifiation, args=(cid, text))

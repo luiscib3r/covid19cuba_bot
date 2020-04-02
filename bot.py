@@ -236,7 +236,17 @@ def notify(message):
 
     cant_users = len(mdb.allchats())
 
-    bot.reply_to(message, 'CID: {} MID {} USERS {}'.format(cid, mid, cant_users))
+    markup = types.ReplyKeyboardMarkup(row_width=2)
+    itembtn1 = types.KeyboardButton('Resumen')
+    itembtn2 = types.KeyboardButton('Evolución')
+    itembtn2 = types.KeyboardButton('Provincias')
+    markup.add(itembtn1, itembtn2)
+
+    bot.reply_to(
+        message, 
+        'CID: {} MID {} USERS {}'.format(cid, mid, cant_users),
+        reply_markup=markup
+    )
 
 from telebot.apihelper import ApiException
 

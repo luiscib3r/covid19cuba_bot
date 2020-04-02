@@ -54,11 +54,6 @@ def start_summary(message):
     bot.send_chat_action(cid, 'typing')
     mdb.savechat(cid)
 
-    markup = types.ReplyKeyboardMarkup(row_width=2)
-    itembtn1 = types.KeyboardButton('Resumen')
-    itembtn2 = types.KeyboardButton('Evolución')
-    markup.add(itembtn1, itembtn2)
-
     bot.reply_to(
         message,
         summary()
@@ -237,10 +232,14 @@ def notify(message):
     cant_users = len(mdb.allchats())
 
     markup = types.ReplyKeyboardMarkup(row_width=1)
-    itembtn1 = types.KeyboardButton('☢️ Resumen')
-    itembtn2 = types.KeyboardButton('☣️ Resumen con Gráficos')
-    itembtn3 = types.KeyboardButton('⏳ Evolución de casos por días')
-    markup.add(itembtn1, itembtn2, itembtn3)
+    
+    markup.add(
+        types.KeyboardButton('☢️ Resumen'),
+        types.KeyboardButton('☣️ Resumen con Gráficos'),
+        types.KeyboardButton('⏳ Evolución de casos por días'),
+        types.KeyboardButton('📝  Datos de los Tests realizados'),
+        types.KeyboardButton('🚻 Casos por Sexo'),
+    )
 
     bot.reply_to(
         message, 

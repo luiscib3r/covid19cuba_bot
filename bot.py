@@ -240,7 +240,8 @@ def notify(message):
         types.KeyboardButton('📝 Datos de los Tests realizados'),
         types.KeyboardButton('🚻 Casos por Sexo'),
         types.KeyboardButton('👶🏻🧔🏽 Distribución por grupos etarios'),
-        types.KeyboardButton('🦠 Modo de Contagio')
+        types.KeyboardButton('🦠 Modo de Contagio'),
+        types.KeyboardButton('🌏 Casos por Nacionalidad (Cubanos/Extranjeros)')
     )
 
     bot.reply_to(
@@ -281,6 +282,8 @@ def texthandler(message):
         send_edad(message)
     elif text == '🦠 Modo de Contagio':
         send_modo(message)
+    elif text == '🌏 Casos por Nacionalidad (Cubanos/Extranjeros)':
+        send_nacionalidad(message)
     elif str(cid) == str(config.admin):
         print(text)
         #Pool().apply_async(send_notifiation, args=(cid, text))

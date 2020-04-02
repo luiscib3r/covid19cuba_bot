@@ -251,6 +251,8 @@ def notify(message):
 
     cant_users = len(mdb.allchats())
 
+    uid = message.from_user.id
+
     markup = types.ReplyKeyboardMarkup(row_width=1)
     
     markup.add(
@@ -268,7 +270,7 @@ def notify(message):
     )
 
     bot.send_message(
-        cid, 
+        uid, 
         'CID: {} MID {} USERS {}'.format(cid, mid, cant_users),
         reply_markup=markup
     )

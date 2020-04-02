@@ -258,7 +258,8 @@ def notifications(message):
     text = message.text
 
     if str(cid) == str(config.admin):
-        Pool().apply_async(send_notifiation, args=(cid, text))
+        print(text)
+        #Pool().apply_async(send_notifiation, args=(cid, text))
 
 ### INLINE MODE
 

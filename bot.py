@@ -231,7 +231,7 @@ def notify(message):
 
     cant_users = len(mdb.allchats())
 
-    markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+    markup = types.ReplyKeyboardMarkup(row_width=1)
     
     markup.add(
         types.KeyboardButton('☢️ Resumen'),

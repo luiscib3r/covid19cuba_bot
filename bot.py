@@ -261,12 +261,14 @@ def send_notifiation(cid, text):
 from multiprocessing import Pool
 
 @bot.message_handler(content_types=['text'])
-def notifications(message):
-    cid = message.chat.id
+def texthandler(message):
     text = message.text
 
-    if str(cid) == str(config.admin):
-        print(text)
+    if text == '☢️ Resumen':
+        start_summary(message)
+
+    #if str(cid) == str(config.admin):
+        #print(text)
         #Pool().apply_async(send_notifiation, args=(cid, text))
 
 ### INLINE MODE

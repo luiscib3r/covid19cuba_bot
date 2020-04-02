@@ -323,11 +323,12 @@ def texthandler(message):
 @bot.inline_handler(lambda query: True)
 def query_text(inline_query):
     try:
+        info = summary()
         r = types.InlineQueryResultArticle(
             '1',
-            summary(),
+            info,
             types.InputTextMessageContent(
-                summary(),
+                info,
                 parse_mode='HTML'
             )
         )

@@ -242,7 +242,7 @@ def notify(message):
         types.KeyboardButton('🚻 Casos por Sexo'),
         types.KeyboardButton('👶🏻🧔🏽 Distribución por grupos etarios'),
         types.KeyboardButton('🦠 Modo de Contagio'),
-        types.KeyboardButton('🌏 Casos por Nacionalidad (Cubanos/Extranjeros)')
+        types.KeyboardButton('🌏 Casos por Nacionalidad (Cubanos/Extranjeros)'),
         types.KeyboardButton('🗺 Distribución por nacionalidad')
     )
 

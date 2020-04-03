@@ -81,7 +81,7 @@ def simple_start(message):
 def start_summary(message):
     cid = message.chat.id
     uid = message.from_user.id
-    username = '{} {} ({})'.format(message.from_user.first_name, message.from_user.last_name, message.from_user.username)
+    username = '{} (@{})'.format(message.from_user.first_name, message.from_user.username)
 
     bot.send_chat_action(cid, 'typing')
     mdb.savechat(cid)
@@ -95,7 +95,7 @@ def start_summary(message):
 def about_handler(message):
     cid = message.chat.id
     uid = message.from_user.id
-    username = '{} {} ({})'.format(message.from_user.first_name, message.from_user.last_name, message.from_user.username)
+    username = '{} (@{})'.format(message.from_user.first_name, message.from_user.username)
 
     bot.send_chat_action(cid, 'typing')
     mdb.savechat(cid)
@@ -109,7 +109,7 @@ def about_handler(message):
 def send_summary(message):
     cid = message.chat.id
     uid = message.from_user.id
-    username = '{} {} ({})'.format(message.from_user.first_name, message.from_user.last_name, message.from_user.username)
+    username = '{} (@{})'.format(message.from_user.first_name, message.from_user.username)
 
     bot.send_chat_action(cid, 'typing')
     mdb.savechat(cid)
@@ -135,7 +135,7 @@ def send_summary(message):
 def send_evolution(message):
     cid = message.chat.id
     uid = message.from_user.id
-    username = '{} {} ({})'.format(message.from_user.first_name, message.from_user.last_name, message.from_user.username)
+    username = '{} (@{})'.format(message.from_user.first_name, message.from_user.username)
 
     bot.send_chat_action(cid, 'typing')
     mdb.savechat(cid)
@@ -157,7 +157,7 @@ def send_evolution(message):
 def send_sexo(message):
     cid = message.chat.id
     uid = message.from_user.id
-    username = '{} {} ({})'.format(message.from_user.first_name, message.from_user.last_name, message.from_user.username)
+    username = '{} (@{})'.format(message.from_user.first_name, message.from_user.username)
 
     bot.send_chat_action(cid, 'typing')
     mdb.savechat(cid)
@@ -176,7 +176,7 @@ def send_sexo(message):
 def send_modo(message):
     cid = message.chat.id
     uid = message.from_user.id
-    username = '{} {} ({})'.format(message.from_user.first_name, message.from_user.last_name, message.from_user.username)
+    username = '{} (@{})'.format(message.from_user.first_name, message.from_user.username)
 
     bot.send_chat_action(cid, 'typing')
     mdb.savechat(cid)
@@ -192,7 +192,7 @@ def send_modo(message):
 def send_casos_extranjeros(message):
     cid = message.chat.id
     uid = message.from_user.id
-    username = '{} {} ({})'.format(message.from_user.first_name, message.from_user.last_name, message.from_user.username)
+    username = '{} (@{})'.format(message.from_user.first_name, message.from_user.username)
 
     bot.send_chat_action(cid, 'typing')
     mdb.savechat(cid)
@@ -208,7 +208,7 @@ def send_casos_extranjeros(message):
 def send_nacionalidad(message):
     cid = message.chat.id
     uid = message.from_user.id
-    username = '{} {} ({})'.format(message.from_user.first_name, message.from_user.last_name, message.from_user.username)
+    username = '{} (@{})'.format(message.from_user.first_name, message.from_user.username)
 
     bot.send_chat_action(cid, 'typing')
     mdb.savechat(cid)
@@ -227,7 +227,7 @@ def send_nacionalidad(message):
 def send_edad(message):
     cid = message.chat.id
     uid = message.from_user.id
-    username = '{} {} ({})'.format(message.from_user.first_name, message.from_user.last_name, message.from_user.username)
+    username = '{} (@{})'.format(message.from_user.first_name, message.from_user.username)
 
     bot.send_chat_action(cid, 'typing')
     mdb.savechat(cid)
@@ -243,7 +243,7 @@ def send_edad(message):
 def send_test(message):
     cid = message.chat.id
     uid = message.from_user.id
-    username = '{} {} ({})'.format(message.from_user.first_name, message.from_user.last_name, message.from_user.username)
+    username = '{} (@{})'.format(message.from_user.first_name, message.from_user.username)
 
     bot.send_chat_action(cid, 'typing')
     mdb.savechat(cid)
@@ -259,7 +259,7 @@ def send_test(message):
 def send_provincias(message):
     cid = message.chat.id
     uid = message.from_user.id
-    username = '{} {} ({})'.format(message.from_user.first_name, message.from_user.last_name, message.from_user.username)
+    username = '{} (@{})'.format(message.from_user.first_name, message.from_user.username)
 
     bot.send_chat_action(cid, 'typing')
     mdb.savechat(cid)
@@ -280,7 +280,7 @@ def send_provincias(message):
 def notify(message):
     cid = message.chat.id
     uid = message.from_user.id
-    username = '{} {} ({})'.format(message.from_user.first_name, message.from_user.last_name, message.from_user.username)
+    username = '{} (@{})'.format(message.from_user.first_name, message.from_user.username)
     mid = message.message_id
 
     cant_users = len(mdb.allchats())
@@ -324,7 +324,7 @@ from multiprocessing import Pool
 def texthandler(message):
     cid = message.chat.id
     uid = message.from_user.id
-    username = '{} {} ({})'.format(message.from_user.first_name, message.from_user.last_name, message.from_user.username)
+    username = '{} (@{})'.format(message.from_user.first_name, message.from_user.username)
     text = message.text
 
     if text == '☢️ Resumen':

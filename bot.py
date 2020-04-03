@@ -67,7 +67,7 @@ markup.add(
 def simple_start(message):
     cid = message.chat.id
     uid = message.from_user.id
-    username = '{} {} ({})'.format(message.from_user.first_name, message.from_user.last_name, message.from_user.username)
+    username = '{} (@{})'.format(message.from_user.first_name, message.from_user.username)
 
     bot.send_chat_action(cid, 'typing')
     mdb.savechat(cid)

@@ -99,8 +99,15 @@ def alert():
         'message': 'alert',
     })
 
-@server.route('/notify')
+@server.route('/notify', methods=['POST'])
 def notify():
+    data = request.get_json()
+
+    if data['token'] != config.STOKEN:
+        return jsonify({
+            'message': 'notify'
+        })
+
     Pool().apply_async(send_notify)    
 
     return jsonify({

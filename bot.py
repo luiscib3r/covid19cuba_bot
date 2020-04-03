@@ -66,18 +66,20 @@ markup.add(
 @bot.message_handler(commands=['start'])
 def simple_start(message):
     cid = message.chat.id
+    uid = message.from_user.id
 
     bot.send_chat_action(cid, 'typing')
     mdb.savechat(cid)
 
     bot.send_message(
-        cid,
+        uid,
         '☢️🇨🇺 Covid19 Cuba Bot 🇨🇺☢️\n\nSeleccione una opción del teclado para obtener información sobre el estado de Cuba con respecto al SARS-COV2 (COVID19)',
         reply_markup=markup
     )
 
 def start_summary(message):
     cid = message.chat.id
+    uid = message.from_user.id
 
     bot.send_chat_action(cid, 'typing')
     mdb.savechat(cid)
@@ -90,6 +92,7 @@ def start_summary(message):
 @bot.message_handler(commands=['about'])
 def about_handler(message):
     cid = message.chat.id
+    uid = message.from_user.id
 
     bot.send_chat_action(cid, 'typing')
     mdb.savechat(cid)
@@ -102,6 +105,7 @@ def about_handler(message):
 @bot.message_handler(commands=['summary'])
 def send_summary(message):
     cid = message.chat.id
+    uid = message.from_user.id
 
     bot.send_chat_action(cid, 'typing')
     mdb.savechat(cid)
@@ -126,6 +130,7 @@ def send_summary(message):
 @bot.message_handler(commands=['evolution'])
 def send_evolution(message):
     cid = message.chat.id
+    uid = message.from_user.id
 
     bot.send_chat_action(cid, 'typing')
     mdb.savechat(cid)
@@ -146,6 +151,7 @@ def send_evolution(message):
 @bot.message_handler(commands=['sexo'])
 def send_sexo(message):
     cid = message.chat.id
+    uid = message.from_user.id
 
     bot.send_chat_action(cid, 'typing')
     mdb.savechat(cid)
@@ -163,6 +169,7 @@ def send_sexo(message):
 @bot.message_handler(commands=['modo'])
 def send_modo(message):
     cid = message.chat.id
+    uid = message.from_user.id
 
     bot.send_chat_action(cid, 'typing')
     mdb.savechat(cid)
@@ -177,6 +184,7 @@ def send_modo(message):
 @bot.message_handler(commands=['casos_extranjeros'])
 def send_casos_extranjeros(message):
     cid = message.chat.id
+    uid = message.from_user.id
 
     bot.send_chat_action(cid, 'typing')
     mdb.savechat(cid)
@@ -191,6 +199,7 @@ def send_casos_extranjeros(message):
 @bot.message_handler(commands=['nacionalidad'])
 def send_nacionalidad(message):
     cid = message.chat.id
+    uid = message.from_user.id
 
     bot.send_chat_action(cid, 'typing')
     mdb.savechat(cid)
@@ -208,6 +217,7 @@ def send_nacionalidad(message):
 @bot.message_handler(commands=['edad'])
 def send_edad(message):
     cid = message.chat.id
+    uid = message.from_user.id
 
     bot.send_chat_action(cid, 'typing')
     mdb.savechat(cid)
@@ -222,6 +232,7 @@ def send_edad(message):
 @bot.message_handler(commands=['test'])
 def send_test(message):
     cid = message.chat.id
+    uid = message.from_user.id
 
     bot.send_chat_action(cid, 'typing')
     mdb.savechat(cid)
@@ -236,6 +247,7 @@ def send_test(message):
 @bot.message_handler(commands=['provincias'])
 def send_provincias(message):
     cid = message.chat.id
+    uid = message.from_user.id
 
     bot.send_chat_action(cid, 'typing')
     mdb.savechat(cid)
@@ -255,11 +267,10 @@ def send_provincias(message):
 @bot.message_handler(commands=['notify'])
 def notify(message):
     cid = message.chat.id
+    uid = message.from_user.id
     mid = message.message_id
 
     cant_users = len(mdb.allchats())
-
-    uid = message.from_user.id
 
     markup = types.ReplyKeyboardMarkup(row_width=1)
     
@@ -299,6 +310,7 @@ from multiprocessing import Pool
 @bot.message_handler(content_types=['text'])
 def texthandler(message):
     cid = message.chat.id
+    uid = message.from_user.id
     text = message.text
 
     if text == '☢️ Resumen':

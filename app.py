@@ -14,7 +14,11 @@ from multiprocessing import Pool
 
 server = Flask(__name__)
 
+import time
+
 def send_notify():
+    time.sleep(15)
+
     chats = mdb.allchats()
 
     for chat in chats:
@@ -57,7 +61,7 @@ def send_claps():
             mdb.removechat(chat)
 
 def send_updating():
-    message = '''ℹ️ Se esta trabajando en la actualizacion de los datos se enviara una notificacion cuando este lista la informacion'''
+    message = '''ℹ️ Se está trabajando en la actualización de los datos se enviará una notificación cuando se encuentre lista la información'''
 
     chats = mdb.allchats()
 

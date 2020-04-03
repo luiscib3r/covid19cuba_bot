@@ -67,24 +67,46 @@ def send_updating():
         except ApiException:
             mdb.removechat(chat)
 
-@server.route('/updating')
+@server.route('/updating', methods=['POST'])
 def updating():
+    data = request.get_json()
+
+    if data['token'] != config.STOKEN:
+        return jsonify({
+            'message': 'alert'
+        })
+
     Pool().apply_async(send_updating)
 
     return jsonify({
         'message': 'updating',
     })
 
-@server.route('/claps')
+@server.route('/claps', methods=['POST'])
 def claps():
+    data = request.get_json()
+
+    if data['token'] != config.STOKEN:
+        return jsonify({
+            'message': 'claps'
+        })
+
+
     Pool().apply_async(send_claps)
 
     return jsonify({
         'message': 'claps',
     })
 
-@server.route('/remember')
+@server.route('/remember', methods=['POST'])
 def remember():
+    data = request.get_json()
+
+    if data['token'] != config.STOKEN:
+        return jsonify({
+            'message': 'remember'
+        })
+
     Pool().apply_async(send_remember)
 
     return jsonify({

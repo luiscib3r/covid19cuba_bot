@@ -69,6 +69,13 @@ def registeruser(cid, username):
         'Hola {}, he intentado enviar respuesta a tu solicitud pero aún no has iniciado una conversación directa conmigo, por favor envíame el comando /start por privado para poder enviarte la información solicitada. Saludos de @covid19cubadata_bot'.format(username),
     )
 
+@bot.channel_post_handler(commands=['start'])
+def channel_start(message):
+    cid = message.chat.id
+    print('Channel {}'.format(cid))
+
+    bot.send_message(cid, 'Channel integration test {}'.format(cid))
+
 @bot.message_handler(commands=['start'])
 def simple_start(message):
     cid = message.chat.id

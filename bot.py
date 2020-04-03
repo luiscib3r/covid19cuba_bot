@@ -66,10 +66,11 @@ markup.add(
 def registeruser(cid, username):
     bot.send_message(
         cid,
-        'Hola {}, he intentado enviar respuesta a tu solicitud pero aún no has iniciado una conversación directa conmigo, por favor envíeame el comando /start por privado para poder enviarte la información solicitada. Saludos de @covid19cubadata_bot'.format(username),
+        'Hola {}, he intentado enviar respuesta a tu solicitud pero aún no has iniciado una conversación directa conmigo, por favor envíame el comando /start por privado para poder enviarte la información solicitada. Saludos de @covid19cubadata_bot'.format(username),
     )
 
 @bot.message_handler(commands=['start'])
+@bot.channel_post_handler(commands=['start'])
 def simple_start(message):
     cid = message.chat.id
     uid = message.from_user.id

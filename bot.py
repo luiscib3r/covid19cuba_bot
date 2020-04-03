@@ -63,6 +63,12 @@ markup.add(
     types.KeyboardButton('ℹ️ Acerca de')
 )
 
+def registeruser(cid, username):
+    bot.send_message(
+        cid,
+        'Hola {}, he intentado enviar respuesta tu solicitud pero aún no has iniciado una conversación directa conmigo, por favor envíeame el comando /start por privado para poder enviarle la información solicitada. Saludos de @covid19cubadata_bot'.format(username),
+    )
+
 @bot.message_handler(commands=['start'])
 def simple_start(message):
     cid = message.chat.id
@@ -72,11 +78,14 @@ def simple_start(message):
     bot.send_chat_action(cid, 'typing')
     mdb.savechat(cid)
 
-    bot.send_message(
-        uid,
-        '☢️🇨🇺 Covid19 Cuba Bot 🇨🇺☢️\n\nHola {}\nSeleccione una opción del teclado para obtener información sobre el estado de Cuba con respecto al SARS-COV2 (COVID19)'.format(username),
-        reply_markup=markup
-    )
+    try:
+        bot.send_message(
+            uid,
+            '☢️🇨🇺 Covid19 Cuba Bot 🇨🇺☢️\n\nHola {}, espero se encuentre bien de salud.\nSeleccione una opción del teclado para obtener información sobre el estado de Cuba con respecto al SARS-COV2 (COVID19)'.format(username),
+            reply_markup=markup
+        )
+    except:
+        registeruser(cid, username)
 
 def start_summary(message):
     cid = message.chat.id
@@ -86,10 +95,13 @@ def start_summary(message):
     bot.send_chat_action(cid, 'typing')
     mdb.savechat(cid)
 
-    bot.send_message(
-        cid,
-        summary(),
-    )
+    try:
+        bot.send_message(
+            uid,
+            summary(),
+        )
+    except:
+        registeruser(cid, username)
 
 @bot.message_handler(commands=['about'])
 def about_handler(message):
@@ -100,10 +112,13 @@ def about_handler(message):
     bot.send_chat_action(cid, 'typing')
     mdb.savechat(cid)
 
-    bot.send_message(
-        cid,
-        about()
-    )
+    try:
+        bot.send_message(
+            uid,
+            about()
+        )
+    except:
+        registeruser(cid, username)
 
 @bot.message_handler(commands=['summary'])
 def send_summary(message):
@@ -114,11 +129,6 @@ def send_summary(message):
     bot.send_chat_action(cid, 'typing')
     mdb.savechat(cid)
 
-    bot.send_message(
-        cid,
-        summary()
-    )
-
     graph1 = requests.get(config.api_url + '/summary_graph1').content
     graph2 = requests.get(config.api_url + '/summary_graph2').content
 
@@ -128,8 +138,16 @@ def send_summary(message):
     with open('summary2.png', 'wb') as f:
         f.write(graph2)
 
-    bot.send_photo(cid, open('summary1.png', 'rb'))
-    bot.send_photo(cid, open('summary2.png', 'rb'))
+    try:
+        bot.send_message(
+            uid,
+            summary()
+        )
+        
+        bot.send_photo(uid, open('summary1.png', 'rb'))
+        bot.send_photo(uid, open('summary2.png', 'rb'))
+    except:
+        registeruser(cid, username)
 
 @bot.message_handler(commands=['evolution'])
 def send_evolution(message):
@@ -149,8 +167,11 @@ def send_evolution(message):
     with open('evolution_fallecidos.png', 'wb') as f:
         f.write(fallecidos_graph)
 
-    bot.send_photo(cid, open('evolution.png', 'rb'))
-    bot.send_photo(cid, open('evolution_fallecidos.png', 'rb'))
+    try:
+        bot.send_photo(uid, open('evolution.png', 'rb'))
+        bot.send_photo(uid, open('evolution_fallecidos.png', 'rb'))
+    except:
+        registeruser(cid, username)
 
 
 @bot.message_handler(commands=['sexo'])
@@ -170,7 +191,10 @@ def send_sexo(message):
 
     texto = 'Hombres: {} | Mujeres {}'.format(data['hombres'], data['mujeres'])
 
-    bot.send_photo(cid, open('sexo.png', 'rb'), texto)
+    try:
+        bot.send_photo(uid, open('sexo.png', 'rb'), texto)
+    except:
+        registeruser(cid, username)
 
 @bot.message_handler(commands=['modo'])
 def send_modo(message):
@@ -186,7 +210,10 @@ def send_modo(message):
     with open('modo.png', 'wb') as f:
         f.write(modo_graph)
 
-    bot.send_photo(cid, open('modo.png', 'rb'))
+    try:
+        bot.send_photo(uid, open('modo.png', 'rb'))
+    except:
+        registeruser(cid, username)
 
 @bot.message_handler(commands=['casos_extranjeros'])
 def send_casos_extranjeros(message):
@@ -202,7 +229,10 @@ def send_casos_extranjeros(message):
     with open('casos_extranjeros.png', 'wb') as f:
         f.write(casos_extranjeros_graph)
 
-    bot.send_photo(cid, open('casos_extranjeros.png', 'rb'))
+    try:
+        bot.send_photo(uid, open('casos_extranjeros.png', 'rb'))
+    except:
+        registeruser(cid, username)
 
 @bot.message_handler(commands=['nacionalidad'])
 def send_nacionalidad(message):
@@ -221,7 +251,10 @@ def send_nacionalidad(message):
 
     texto = 'Cubanos: {} | Extranjeros {}'.format(data['Cubanos'], data['Extranjeros'])
 
-    bot.send_photo(cid, open('nacionalidad.png', 'rb'), texto)
+    try:
+        bot.send_photo(uid, open('nacionalidad.png', 'rb'), texto)
+    except:
+        registeruser(cid, username)
 
 @bot.message_handler(commands=['edad'])
 def send_edad(message):
@@ -237,7 +270,10 @@ def send_edad(message):
     with open('edad.png', 'wb') as f:
         f.write(edad_graph)
 
-    bot.send_photo(cid, open('edad.png', 'rb'))
+    try:
+        bot.send_photo(uid, open('edad.png', 'rb'))
+    except:
+        registeruser(cid, username)
 
 @bot.message_handler(commands=['test'])
 def send_test(message):
@@ -253,7 +289,10 @@ def send_test(message):
     with open('test.png', 'wb') as f:
         f.write(test_graph)
 
-    bot.send_photo(cid, open('test.png', 'rb'))
+    try:
+        bot.send_photo(uid, open('test.png', 'rb'))
+    except:
+        registeruser(cid, username)
 
 @bot.message_handler(commands=['provincias'])
 def send_provincias(message):
@@ -272,15 +311,18 @@ def send_provincias(message):
 
     with open('municipios.png', 'wb') as f:
         f.write(municipios_graph)
-
-    bot.send_photo(cid, open('provincias.png', 'rb'))
-    bot.send_photo(cid, open('municipios.png', 'rb'))
+    
+    try:
+        bot.send_photo(uid, open('provincias.png', 'rb'))
+        bot.send_photo(uid, open('municipios.png', 'rb'))
+    except:
+        registeruser(cid, username)
 
 @bot.message_handler(commands=['notify'])
 def notify(message):
     cid = message.chat.id
     uid = message.from_user.id
-    username = '{} (@{})'.format(message.from_user.first_name, message.from_user.username)
+    # username = '{} (@{})'.format(message.from_user.first_name, message.from_user.username)
     mid = message.message_id
 
     cant_users = len(mdb.allchats())
@@ -301,11 +343,13 @@ def notify(message):
         types.KeyboardButton('ℹ️ Acerca de'),
     )
 
-    bot.send_message(
-        uid, 
-        'CID: {} MID {} USERS {}'.format(cid, mid, cant_users),
-        reply_markup=markup
-    )
+    try:
+        bot.send_message(
+            uid, 
+            'CID: {} MID {} USERS {}'.format(cid, mid, cant_users),
+        )
+    except:
+        pass
 
 from telebot.apihelper import ApiException
 
@@ -323,8 +367,8 @@ from multiprocessing import Pool
 @bot.message_handler(content_types=['text'])
 def texthandler(message):
     cid = message.chat.id
-    uid = message.from_user.id
-    username = '{} (@{})'.format(message.from_user.first_name, message.from_user.username)
+    # uid = message.from_user.id
+    # username = '{} (@{})'.format(message.from_user.first_name, message.from_user.username)
     text = message.text
 
     if text == '☢️ Resumen':

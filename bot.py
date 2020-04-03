@@ -72,9 +72,12 @@ def registeruser(cid, username):
 @bot.channel_post_handler(commands=['start'])
 def channel_start(message):
     cid = message.chat.id
-    print('Channel {}'.format(cid))
+    mdb.savechat(cid)
 
-    bot.send_message(cid, 'Channel integration test {}'.format(cid))
+    bot.send_message(
+        cid, 
+        'Se ha activado ☢️🇨🇺 Covid19 Cuba Bot 🇨🇺☢️ para este canal. (@covid19cubadata_bot)'
+    )
 
 @bot.message_handler(commands=['start'])
 def simple_start(message):

@@ -70,7 +70,6 @@ def registeruser(cid, username):
     )
 
 @bot.message_handler(commands=['start'])
-@bot.channel_post_handler(commands=['start'])
 def simple_start(message):
     cid = message.chat.id
     uid = message.from_user.id

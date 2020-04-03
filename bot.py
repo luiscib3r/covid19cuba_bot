@@ -64,6 +64,18 @@ markup.add(
 )
 
 @bot.message_handler(commands=['start'])
+def simple_start(message):
+    cid = message.chat.id
+
+    bot.send_chat_action(cid, 'typing')
+    mdb.savechat(cid)
+
+    bot.send_message(
+        cid,
+        '☢️🇨🇺 Covid19 Cuba Bot 🇨🇺☢️\n\nSeleccione una opción del teclado para obtener información sobre el estado de Cuba con respecto al SARS-COV2 (COVID19)',
+        reply_markup=markup
+    )
+
 def start_summary(message):
     cid = message.chat.id
 
@@ -73,7 +85,6 @@ def start_summary(message):
     bot.send_message(
         cid,
         summary(),
-        reply_markup=markup
     )
 
 @bot.message_handler(commands=['about'])

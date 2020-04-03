@@ -17,8 +17,6 @@ server = Flask(__name__)
 import time
 
 def send_notify():
-    time.sleep(15)
-
     chats = mdb.allchats()
 
     for chat in chats:

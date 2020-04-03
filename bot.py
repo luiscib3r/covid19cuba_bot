@@ -130,6 +130,16 @@ def about_handler(message):
     except:
         registeruser(cid, username)
 
+@bot.channel_post_handler(commands=['summary'])
+def channel_summary(message):
+    cid = message.chat.id
+    mdb.savechat(cid)
+
+    bot.send_message(
+        cid, 
+        summary()
+    )
+
 @bot.message_handler(commands=['summary'])
 def send_summary(message):
     cid = message.chat.id

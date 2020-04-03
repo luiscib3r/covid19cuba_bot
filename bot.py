@@ -85,8 +85,7 @@ def about_handler(message):
 
     bot.send_message(
         cid,
-        about(),
-        reply_markup=markup
+        about()
     )
 
 @bot.message_handler(commands=['summary'])
@@ -98,8 +97,7 @@ def send_summary(message):
 
     bot.send_message(
         cid,
-        summary(),
-        reply_markup=markup
+        summary()
     )
 
     graph1 = requests.get(config.api_url + '/summary_graph1').content
@@ -130,8 +128,8 @@ def send_evolution(message):
     with open('evolution_fallecidos.png', 'wb') as f:
         f.write(fallecidos_graph)
 
-    bot.send_photo(cid, open('evolution.png', 'rb'), reply_markup=markup)
-    bot.send_photo(cid, open('evolution_fallecidos.png', 'rb'), reply_markup=markup)
+    bot.send_photo(cid, open('evolution.png', 'rb'))
+    bot.send_photo(cid, open('evolution_fallecidos.png', 'rb'))
 
 
 @bot.message_handler(commands=['sexo'])
@@ -149,7 +147,7 @@ def send_sexo(message):
 
     texto = 'Hombres: {} | Mujeres {}'.format(data['hombres'], data['mujeres'])
 
-    bot.send_photo(cid, open('sexo.png', 'rb'), texto, reply_markup=markup)
+    bot.send_photo(cid, open('sexo.png', 'rb'), texto)
 
 @bot.message_handler(commands=['modo'])
 def send_modo(message):
@@ -163,7 +161,7 @@ def send_modo(message):
     with open('modo.png', 'wb') as f:
         f.write(modo_graph)
 
-    bot.send_photo(cid, open('modo.png', 'rb'), reply_markup=markup)
+    bot.send_photo(cid, open('modo.png', 'rb'))
 
 @bot.message_handler(commands=['casos_extranjeros'])
 def send_casos_extranjeros(message):
@@ -177,7 +175,7 @@ def send_casos_extranjeros(message):
     with open('casos_extranjeros.png', 'wb') as f:
         f.write(casos_extranjeros_graph)
 
-    bot.send_photo(cid, open('casos_extranjeros.png', 'rb'), reply_markup=markup)
+    bot.send_photo(cid, open('casos_extranjeros.png', 'rb'))
 
 @bot.message_handler(commands=['nacionalidad'])
 def send_nacionalidad(message):
@@ -194,7 +192,7 @@ def send_nacionalidad(message):
 
     texto = 'Cubanos: {} | Extranjeros {}'.format(data['Cubanos'], data['Extranjeros'])
 
-    bot.send_photo(cid, open('nacionalidad.png', 'rb'), texto, reply_markup=markup)
+    bot.send_photo(cid, open('nacionalidad.png', 'rb'), texto)
 
 @bot.message_handler(commands=['edad'])
 def send_edad(message):
@@ -208,7 +206,7 @@ def send_edad(message):
     with open('edad.png', 'wb') as f:
         f.write(edad_graph)
 
-    bot.send_photo(cid, open('edad.png', 'rb'), reply_markup=markup)
+    bot.send_photo(cid, open('edad.png', 'rb'))
 
 @bot.message_handler(commands=['test'])
 def send_test(message):
@@ -222,7 +220,7 @@ def send_test(message):
     with open('test.png', 'wb') as f:
         f.write(test_graph)
 
-    bot.send_photo(cid, open('test.png', 'rb'), reply_markup=markup)
+    bot.send_photo(cid, open('test.png', 'rb'))
 
 @bot.message_handler(commands=['provincias'])
 def send_provincias(message):
@@ -240,8 +238,8 @@ def send_provincias(message):
     with open('municipios.png', 'wb') as f:
         f.write(municipios_graph)
 
-    bot.send_photo(cid, open('provincias.png', 'rb'), reply_markup=markup)
-    bot.send_photo(cid, open('municipios.png', 'rb'), reply_markup=markup)
+    bot.send_photo(cid, open('provincias.png', 'rb'))
+    bot.send_photo(cid, open('municipios.png', 'rb'))
 
 @bot.message_handler(commands=['notify'])
 def notify(message):

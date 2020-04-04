@@ -29,7 +29,9 @@ def summary():
     )
 
 def about():
-    return '''Covid19 Cuba Data Telegram Bot 
+    return '''☣️ Covid19 Cuba ☣️
+
+https://covidcuba.swlx.info
 
 Web de Covid19 Cuba Data:
 

@@ -16,10 +16,9 @@ server = Flask(__name__)
 
 import time
 
-def send_notify():
-    chats = mdb.allchats()
+def send_notify(arr):
 
-    for chat in chats:
+    for chat in arr:
         try:
             bot.send_message(chat, 'ℹ️ La base de datos se ha actualizado\n\n' + summary())
         except ApiException:

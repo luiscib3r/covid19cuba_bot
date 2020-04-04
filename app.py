@@ -48,7 +48,7 @@ def send_remember():
             mdb.removechat(chat)
 
 def send_claps():
-    message = '''Los nuevos super héroes merecen ser reverenciados. Gracias al  personal de salud por servir de ejército activo contra esta pandemia. Salgamos todos a dar un aplauso fuerte como merecen justo a las 9 pms'''
+    message = '''Los nuevos super héroes merecen ser reverenciados. Gracias al  personal de salud por servir de ejército activo contra esta pandemia. Salgamos todos a dar un aplauso fuerte como merecen justo a las 9 p.m'''
 
     chats = mdb.allchats()
 

@@ -31,7 +31,7 @@ Los coronavirus son una extensa familia de virus que pueden causar enfermedades 
 La COVID-19 es la enfermedad infecciosa causada por el coronavirus que se ha descubierto más recientemente. Tanto el nuevo virus como la enfermedad eran desconocidos antes de que estallara el brote en Wuhan (China) en diciembre de 2019.''',
 '''¿Es posible contagiarse de COVID-19 por contacto con una persona que no presente ningún síntoma?
 
-La principal forma de propagación de la enfermedad es a través de las gotículas respiratorias expelidas por alguien al toser. El riesgo de contraer la COVID-19 de alguien que no presente ningún síntoma es muy bajo. Sin embargo, muchas personas que contraen la COVID-19 solo presentan síntomas leves. Esto es particularmente cierto en las primeras etapas de la enfermedad. Por lo tanto, es posible contagiarse de alguien que, por ejemplo, solamente tenga una tos leve y no se sienta enfermo.''',
+La principal forma de propagación de la enfermedad es a través de las gotículas respiratorias expelidas por alguien al toser. Muchas personas que contraen la COVID-19 solo presentan síntomas leves. Esto es particularmente cierto en las primeras etapas de la enfermedad. Por lo tanto, es posible contagiarse de alguien que, por ejemplo, solamente tenga una tos leve y no se sienta enfermo.''',
 '''Evite tocarse los ojos, la nariz y la boca
 
 ¿Por qué? Las manos tocan muchas superficies y pueden recoger virus. Una vez contaminadas, las manos pueden transferir el virus a los ojos, la nariz o la boca. Desde allí, el virus puede entrar en su cuerpo y causarle la enfermedad.''',

@@ -61,6 +61,44 @@ def send_updating(arr):
         except ApiException:
             mdb.removechat(chat)
 
+def send_info(arr, message):
+    for chat in arr:
+        try:
+            bot.send_message(chat, message)
+        except ApiException:
+            mdb.removechat(chat)
+
+@server.route('/sendinfo', methods=['POST'])
+def info():
+    data = request.get_json()
+
+    if data['token'] != config.STOKEN:
+        return jsonify({
+            'message': 'info'
+        })
+
+    try:
+        mess = data['message']
+    except:
+        return jsonify({
+            'message': 'info'
+        })
+
+    chats = mdb.allchats()
+
+    le = None
+
+    for s,e in enumerate(range(500, len(chats)+500, 500)):
+        le = e
+        Pool().apply_async(send_info, args=(chats[s*500:e],mess))
+
+    Pool().apply_async(send_info, args=(chats[le:],mess))
+
+    return jsonify({
+        'message': 'info',
+    })
+
+
 @server.route('/updating', methods=['POST'])
 def updating():
     data = request.get_json()
@@ -71,11 +109,14 @@ def updating():
         })
 
     chats = mdb.allchats()
-    
+
+    le = None
+
     for s,e in enumerate(range(500, len(chats)+500, 500)):
+        le = e
         Pool().apply_async(send_updating, args=(chats[s*500:e],))
 
-    Pool().apply_async(send_updating, args=(chats[e:],))
+    Pool().apply_async(send_updating, args=(chats[le:],))
 
     return jsonify({
         'message': 'updating',
@@ -91,11 +132,14 @@ def claps():
         })
 
     chats = mdb.allchats()
-    
+
+    le = None
+
     for s,e in enumerate(range(500, len(chats)+500, 500)):
+        le = e
         Pool().apply_async(send_claps, args=(chats[s*500:e],))
 
-    Pool().apply_async(send_claps, args=(chats[e:],))
+    Pool().apply_async(send_claps, args=(chats[le:],))
 
     return jsonify({
         'message': 'claps',
@@ -111,11 +155,14 @@ def remember():
         })
 
     chats = mdb.allchats()
-    
+
+    le = None
+
     for s,e in enumerate(range(500, len(chats)+500, 500)):
+        le = e
         Pool().apply_async(send_remember, args=(chats[s*500:e],))
 
-    Pool().apply_async(send_remember, args=(chats[e:],))
+    Pool().apply_async(send_remember, args=(chats[le:],))
 
     return jsonify({
         'message': 'remember',
@@ -131,11 +178,14 @@ def alert():
         })
 
     chats = mdb.allchats()
-    
+
+    le = None
+
     for s,e in enumerate(range(500, len(chats)+500, 500)):
+        le = e
         Pool().apply_async(send_alert, args=(chats[s*500:e],))
 
-    Pool().apply_async(send_alert, args=(chats[e:],))
+    Pool().apply_async(send_alert, args=(chats[le:],))
 
     return jsonify({
         'message': 'alert',
@@ -151,11 +201,14 @@ def notify():
         })
 
     chats = mdb.allchats()
-    
+
+    le = None
+
     for s,e in enumerate(range(500, len(chats)+500, 500)):
+        le = e
         Pool().apply_async(send_notify, args=(chats[s*500:e],))
 
-    Pool().apply_async(send_notify, args=(chats[e:],))
+    Pool().apply_async(send_notify, args=(chats[le:],))
 
     return jsonify({
         'message': 'notify'

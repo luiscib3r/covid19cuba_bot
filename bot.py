@@ -181,16 +181,21 @@ def send_evolution(message):
     mdb.savechat(cid)
 
     evolution_graph = requests.get(config.api_url + '/evolution').content
+    recuperados_graph = requests.get(config.api_url + '/evolution_recuperados').content
     fallecidos_graph = requests.get(config.api_url + '/evolution_fallecidos').content
 
     with open('evolution.png', 'wb') as f:
         f.write(evolution_graph)
     
+    with open('evolution_recuperados.png', 'wb') as f:
+        f.write(recuperados_graph)
+
     with open('evolution_fallecidos.png', 'wb') as f:
         f.write(fallecidos_graph)
 
     try:
         bot.send_photo(uid, open('evolution.png', 'rb'))
+        bot.send_photo(uid, open('evolution_recuperados.png', 'rb'))
         bot.send_photo(uid, open('evolution_fallecidos.png', 'rb'))
     except:
         registeruser(cid, username)

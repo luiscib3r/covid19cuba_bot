@@ -397,7 +397,7 @@ import rmessages
 def texthandler(message):
     cid = message.chat.id
     mid = message.message_id
-    # uid = message.from_user.id
+    uid = message.from_user.id
     # username = '{} (@{})'.format(message.from_user.first_name, message.from_user.username)
     text = message.text
 
@@ -427,7 +427,7 @@ def texthandler(message):
         doc = rmessages.getDoc()
         bot.reply_to(message, doc + ' No te toques la cara sin lavarte las manos')
     elif str(cid) == str(config.gadmin):
-        bot.forward_message(int(config.admin), cid, mid)
+        bot.send_message(int(config.admin), text)
         
         #Pool().apply_async(send_notifiation, args=(cid, text))
 

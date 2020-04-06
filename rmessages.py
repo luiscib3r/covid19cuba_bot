@@ -62,5 +62,10 @@ import random
 
 random.seed(time.perf_counter())
 
+doctors = ['👨‍⚕️', '👩‍⚕️']
+
+def getDoc():
+    return doctors[random.randint(0, len(doctors)-1)]
+
 def getMessage():
-    return messages[random.randint(0, len(messages)-1)]
+    return getDoc() + ' ' + messages[random.randint(0, len(messages)-1)]

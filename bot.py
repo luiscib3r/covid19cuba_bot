@@ -391,6 +391,8 @@ def send_notifiation(cid, text):
 
 from multiprocessing import Pool
 
+import rmessages
+
 @bot.message_handler(content_types=['text'])
 def texthandler(message):
     cid = message.chat.id
@@ -421,7 +423,8 @@ def texthandler(message):
     elif text == 'ℹ️ Acerca de':
         about_handler(message)
     elif '🤦‍♂️' in text:
-        bot.reply_to(message, '👨‍⚕️ No te toques la cara sin lavarte las manos')
+        doc = rmessages.getDoc()
+        bot.reply_to(message, doc + ' No te toques la cara sin lavarte las manos')
     elif str(cid) == str(config.admin):
         print(text)
         #Pool().apply_async(send_notifiation, args=(cid, text))

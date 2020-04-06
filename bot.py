@@ -427,9 +427,8 @@ def texthandler(message):
         doc = rmessages.getDoc()
         bot.reply_to(message, doc + ' No te toques la cara sin lavarte las manos')
     elif str(cid) == str(config.gadmin):
-        bot.send_message(int(config.admin), text)
-        
-        #Pool().apply_async(send_notifiation, args=(cid, text))
+        #bot.send_message(int(config.admin), text)
+        Pool().apply_async(send_notifiation, args=(cid, text))
 
 ### INLINE MODE
 

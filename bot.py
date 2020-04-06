@@ -396,6 +396,7 @@ import rmessages
 @bot.message_handler(content_types=['text'])
 def texthandler(message):
     cid = message.chat.id
+    mid = message.message_id
     # uid = message.from_user.id
     # username = '{} (@{})'.format(message.from_user.first_name, message.from_user.username)
     text = message.text
@@ -425,8 +426,9 @@ def texthandler(message):
     elif '🤦‍♂️' in text:
         doc = rmessages.getDoc()
         bot.reply_to(message, doc + ' No te toques la cara sin lavarte las manos')
-    elif str(cid) == str(config.admin):
-        print(text)
+    elif str(cid) == str(config.gadmin):
+        bot.forward_message(int(config.admin), cid, mid)
+        
         #Pool().apply_async(send_notifiation, args=(cid, text))
 
 ### INLINE MODE

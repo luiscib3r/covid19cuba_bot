@@ -9,3 +9,5 @@ MONGO_URI = os.environ.get('MONGO_URI')
 admin = os.environ.get('ADMINCID')
 
 STOKEN = os.environ.get('STOKEN')
+
+gadmin = os.environ.get('GADMINCID')

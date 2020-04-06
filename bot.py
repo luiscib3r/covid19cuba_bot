@@ -420,6 +420,8 @@ def texthandler(message):
         send_casos_extranjeros(message)
     elif text == 'ℹ️ Acerca de':
         about_handler(message)
+    elif '🤦‍♂️' in text:
+        bot.reply_to(message, '👨‍⚕️ No te toques la cara sin lavarte las manos')
     elif str(cid) == str(config.admin):
         print(text)
         #Pool().apply_async(send_notifiation, args=(cid, text))

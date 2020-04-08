@@ -68,7 +68,7 @@ markup.add(
 def registeruser(cid, username):
     bot.send_message(
         cid,
-        'Hola {}, he intentado enviar respuesta a tu solicitud pero aún no has iniciado una conversación directa conmigo, por favor envíame el comando /start por privado para poder enviarte la información solicitada. Saludos de @covid19cubadata_bot'.format(username),
+        'Hola {}, he intentado enviar respuesta a tu solicitud pero aún no has iniciado una conversación directa conmigo, por favor toque aquí 👉 @covid19cubadata_bot y luego de al botón [Iniciar].'.format(username),
     )
 
 @bot.channel_post_handler(commands=['start'])
@@ -422,7 +422,7 @@ def texthandler(message):
         send_casos_extranjeros(message)
     elif text == 'ℹ️ Acerca de':
         about_handler(message)
-    elif '🤦‍♂️' in text:
+    elif '🤦‍♂️' in text or '🤦' in text:
         doc = rmessages.getDoc()
         bot.reply_to(message, doc + ' No te toques la cara sin lavarte las manos')
     elif str(cid) == str(config.admin):

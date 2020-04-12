@@ -29,24 +29,24 @@ def summary():
     )
 
 def about():
-    return '''☣️ Covid19 Cuba ☣️
-
-https://covidcuba.swlx.info
-
-Web de Covid19 Cuba Data:
-
+    return '''🕸 Web
 🌐 https://covid19cubadata.github.io/
+🌐 https://covidcuba.swlx.info
 🇨🇺 http://www.cusobu.nat.cu/covid/
 
 📲 Aplicación Movil:
-
 Apklis: https://www.apklis.cu/application/club.postdata.covid19cuba
-Github: https://github.com/covid19cuba/covid19cuba-app/releases/latest/download/app.apk
 
 👨‍💻Bot Source Code:
-
 https://github.com/correaleyval/covid19cuba_bot
-https://github.com/correaleyval/covid19cuba_api
+
+💪💻 Partners:
+* Covid19CubaData Developers Team
+* CUSOBU CUBA https://es.cusobucuba.com/
+* DAXSLAB https://www.daxslab.com/
+* SWL-X https://swlx.info/
+* UIC Unión de Informáticos de Cuba
+* Universidad de Oriente https://www.uo.edu.cu/
 '''
 
 markup = types.ReplyKeyboardMarkup(row_width=1)

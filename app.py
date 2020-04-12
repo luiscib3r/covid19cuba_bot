@@ -12,7 +12,10 @@ from telebot.apihelper import ApiException
 
 from multiprocessing import Pool
 
-server = Flask(__name__)
+server = Flask(__name__,
+    static_url_path='',
+    static_folder='.'
+)
 
 import time
 

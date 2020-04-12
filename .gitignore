@@ -2,3 +2,4 @@
 *.pyc
 .vscode
 env.sh
+send_info.py

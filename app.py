@@ -230,5 +230,5 @@ def getMessage():
 @server.route('/')
 def webhook():
     bot.remove_webhook()
-    bot.set_webhook(url='https://covid19cuba-api.cusobucuba.com:9991/' + config.token)
+    bot.set_webhook(url='https://covid19cuba-bot.cusobucuba.com/' + config.token)
     return "!", 200

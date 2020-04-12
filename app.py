@@ -38,7 +38,7 @@ def send_alert(arr):
             mdb.removechat(chat)
 
 def send_remember(arr):
-    message = '''Mantenerse informado de las medidas adoptadas por las autoridades de salud de su país forma parte de tu obligación como ciudadano en la lucha contra la pandemia de la COVID-19. En unos minutos, justo a las 11 a.m, el Ministerio de Salud Pública de la República de Cuba comenzará su habitual Conferencia de Prensa. No dejes de verla, mantenernos informados es vital para apoyar a las autoridades a erradicar este mal que nos azota a todos.'''
+    message = '''Mantenerse informado de las medidas adoptadas por las autoridades de salud del país forma parte de su obligación como ciudadano en la lucha contra la pandemia de la COVID-19. En unos minutos, justo a las 11 a.m, el Ministerio de Salud Pública de la República de Cuba comenzará su habitual Conferencia de Prensa. No deje de verla, mantenernos informados es vital para apoyar a las autoridades a erradicar este mal que nos afecta a todos.'''
 
     for chat in arr:
         try:

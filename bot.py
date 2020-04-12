@@ -433,9 +433,9 @@ def texthandler(message):
         send_casos_extranjeros(message)
     elif text == 'ℹ️ Acerca de':
         about_handler(message)
-    elif '🤦‍♂️' in text or '🤦' in text:
-        doc = rmessages.getDoc()
-        bot.reply_to(message, doc + ' No te toques la cara sin lavarte las manos')
+    #elif '🤦‍♂️' in text or '🤦' in text:
+    #    doc = rmessages.getDoc()
+    #    bot.reply_to(message, doc + ' No te toques la cara sin lavarte las manos')
     elif str(cid) == str(config.gadmin):
         chats = mdb.allchats()
 

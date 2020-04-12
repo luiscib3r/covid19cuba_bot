@@ -151,25 +151,31 @@ def send_summary(message):
     bot.send_chat_action(cid, 'typing')
     mdb.savechat(cid)
 
-    graph1 = requests.get(config.api_url + '/summary_graph1').content
-    graph2 = requests.get(config.api_url + '/summary_graph2').content
-
-    with open('summary1.png', 'wb') as f:
-        f.write(graph1)
-
-    with open('summary2.png', 'wb') as f:
-        f.write(graph2)
-
     try:
         bot.send_message(
             uid,
             summary()
         )
-        
-        bot.send_photo(uid, open('summary1.png', 'rb'))
-        bot.send_photo(uid, open('summary2.png', 'rb'))
     except:
         registeruser(cid, username)
+        return
+
+    bot.send_chat_action(cid, 'typing')
+    graph1 = requests.get(config.api_url + '/summary_graph1').content
+
+    with open('summary1.png', 'wb') as f:
+        f.write(graph1)
+
+    bot.send_photo(uid, open('summary1.png', 'rb'))
+
+    
+    bot.send_chat_action(cid, 'typing')
+    graph2 = requests.get(config.api_url + '/summary_graph2').content
+
+    with open('summary2.png', 'wb') as f:
+        f.write(graph2)
+    
+    bot.send_photo(uid, open('summary2.png', 'rb'))    
 
 @bot.message_handler(commands=['evolution'])
 def send_evolution(message):
@@ -181,25 +187,29 @@ def send_evolution(message):
     mdb.savechat(cid)
 
     evolution_graph = requests.get(config.api_url + '/evolution').content
-    recuperados_graph = requests.get(config.api_url + '/evolution_recuperados').content
-    fallecidos_graph = requests.get(config.api_url + '/evolution_fallecidos').content
 
     with open('evolution.png', 'wb') as f:
         f.write(evolution_graph)
-    
-    with open('evolution_recuperados.png', 'wb') as f:
-        f.write(recuperados_graph)
-
-    with open('evolution_fallecidos.png', 'wb') as f:
-        f.write(fallecidos_graph)
 
     try:
         bot.send_photo(uid, open('evolution.png', 'rb'))
-        bot.send_photo(uid, open('evolution_recuperados.png', 'rb'))
-        bot.send_photo(uid, open('evolution_fallecidos.png', 'rb'))
     except:
         registeruser(cid, username)
+        return
 
+    bot.send_chat_action(cid, 'typing')
+    recuperados_graph = requests.get(config.api_url + '/evolution_recuperados').content
+    with open('evolution_recuperados.png', 'wb') as f:
+        f.write(recuperados_graph)
+    
+    bot.send_photo(uid, open('evolution_recuperados.png', 'rb'))
+
+    bot.send_chat_action(cid, 'typing')
+    fallecidos_graph = requests.get(config.api_url + '/evolution_fallecidos').content
+    with open('evolution_fallecidos.png', 'wb') as f:
+        f.write(fallecidos_graph)
+
+    bot.send_photo(uid, open('evolution_fallecidos.png', 'rb'))
 
 @bot.message_handler(commands=['sexo'])
 def send_sexo(message):
@@ -331,19 +341,22 @@ def send_provincias(message):
     mdb.savechat(cid)
 
     provincias_graph = requests.get(config.api_url + '/provincias').content
-    municipios_graph = requests.get(config.api_url + '/municipios').content
-
     with open('provincias.png', 'wb') as f:
         f.write(provincias_graph)
 
-    with open('municipios.png', 'wb') as f:
-        f.write(municipios_graph)
-    
     try:
         bot.send_photo(uid, open('provincias.png', 'rb'))
-        bot.send_photo(uid, open('municipios.png', 'rb'))
     except:
         registeruser(cid, username)
+        return
+
+    bot.send_chat_action(cid, 'typing')
+    municipios_graph = requests.get(config.api_url + '/municipios').content
+
+    with open('municipios.png', 'wb') as f:
+        f.write(municipios_graph)
+
+    bot.send_photo(uid, open('municipios.png', 'rb'))
 
 @bot.message_handler(commands=['notify'])
 def notify(message):
@@ -381,13 +394,10 @@ def notify(message):
 from telebot.apihelper import ApiException
 
 def send_notifiation(cid, text):
-    users = mdb.allchats()
-
-    for uid in users:
-        try:
-            bot.send_message(uid, text)
-        except ApiException:
-            mdb.removechat(uid)
+    try:
+        bot.send_message(cid, text)
+    except ApiException:
+        mdb.removechat(cid)
 
 from multiprocessing import Pool
 
@@ -427,8 +437,18 @@ def texthandler(message):
         doc = rmessages.getDoc()
         bot.reply_to(message, doc + ' No te toques la cara sin lavarte las manos')
     elif str(cid) == str(config.gadmin):
+        chats = mdb.allchats()
+
+        le = None
+
+        for s,e in enumerate(range(500, len(chats)+500, 500)):
+            le = e
+            Pool().apply_async(send_notifiation, args=(chats[s*500:e],text))
+
+        Pool().apply_async(send_notifiation, args=(chats[le:],text))
+        
         #bot.send_message(int(config.admin), text)
-        Pool().apply_async(send_notifiation, args=(cid, text))
+        #Pool().apply_async(send_notifiation, args=(cid, text))
 
 ### INLINE MODE
 
@@ -438,7 +458,7 @@ def query_text(inline_query):
         info = summary()
         r = types.InlineQueryResultArticle(
             '1',
-            info,
+            'ℹ️ Enviar resumen Covid19 Cuba',
             types.InputTextMessageContent(
                 info,
                 parse_mode='HTML'

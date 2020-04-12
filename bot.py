@@ -66,10 +66,13 @@ markup.add(
 )
 
 def registeruser(cid, username):
-    bot.send_message(
-        cid,
-        'Hola {}, he intentado enviar respuesta a tu solicitud pero aún no has iniciado una conversación directa conmigo, por favor toque aquí 👉 @covid19cubadata_bot y luego de al botón [Iniciar].'.format(username),
-    )
+    try:
+        bot.send_message(
+            cid,
+            'Hola {}, he intentado enviar respuesta a tu solicitud pero aún no has iniciado una conversación directa conmigo, por favor toque aquí 👉 @covid19cubadata_bot y luego de al botón [Iniciar].'.format(username),
+        )
+    except ApiException:
+        mdb.removechat(cid)
 
 @bot.channel_post_handler(commands=['start'])
 def channel_start(message):
@@ -96,7 +99,7 @@ def simple_start(message):
             '☢️🇨🇺 Covid19 Cuba Bot 🇨🇺☢️\n\nHola {}, espero se encuentre bien de salud.\nSeleccione una opción del teclado para obtener información sobre el estado de Cuba con respecto al SARS-COV2 (COVID19)'.format(username),
             reply_markup=markup
         )
-    except:
+    except ApiException:
         registeruser(cid, username)
 
 def start_summary(message):
@@ -112,7 +115,7 @@ def start_summary(message):
             uid,
             summary(),
         )
-    except:
+    except ApiException:
         registeruser(cid, username)
 
 @bot.message_handler(commands=['about'])
@@ -129,7 +132,7 @@ def about_handler(message):
             uid,
             about()
         )
-    except:
+    except ApiException:
         registeruser(cid, username)
 
 @bot.channel_post_handler(commands=['summary'])
@@ -156,7 +159,7 @@ def send_summary(message):
             uid,
             summary()
         )
-    except:
+    except ApiException:
         registeruser(cid, username)
         return
 
@@ -193,7 +196,7 @@ def send_evolution(message):
 
     try:
         bot.send_photo(uid, open('evolution.png', 'rb'))
-    except:
+    except ApiException:
         registeruser(cid, username)
         return
 
@@ -230,7 +233,7 @@ def send_sexo(message):
 
     try:
         bot.send_photo(uid, open('sexo.png', 'rb'), texto)
-    except:
+    except ApiException:
         registeruser(cid, username)
 
 @bot.message_handler(commands=['modo'])
@@ -249,7 +252,7 @@ def send_modo(message):
 
     try:
         bot.send_photo(uid, open('modo.png', 'rb'))
-    except:
+    except ApiException:
         registeruser(cid, username)
 
 @bot.message_handler(commands=['casos_extranjeros'])
@@ -268,7 +271,7 @@ def send_casos_extranjeros(message):
 
     try:
         bot.send_photo(uid, open('casos_extranjeros.png', 'rb'))
-    except:
+    except ApiException:
         registeruser(cid, username)
 
 @bot.message_handler(commands=['nacionalidad'])
@@ -290,7 +293,7 @@ def send_nacionalidad(message):
 
     try:
         bot.send_photo(uid, open('nacionalidad.png', 'rb'), texto)
-    except:
+    except ApiException:
         registeruser(cid, username)
 
 @bot.message_handler(commands=['edad'])
@@ -309,7 +312,7 @@ def send_edad(message):
 
     try:
         bot.send_photo(uid, open('edad.png', 'rb'))
-    except:
+    except ApiException:
         registeruser(cid, username)
 
 @bot.message_handler(commands=['test'])
@@ -328,7 +331,7 @@ def send_test(message):
 
     try:
         bot.send_photo(uid, open('test.png', 'rb'))
-    except:
+    except ApiException:
         registeruser(cid, username)
 
 @bot.message_handler(commands=['provincias'])
@@ -346,7 +349,7 @@ def send_provincias(message):
 
     try:
         bot.send_photo(uid, open('provincias.png', 'rb'))
-    except:
+    except ApiException:
         registeruser(cid, username)
         return
 

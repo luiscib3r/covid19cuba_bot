@@ -11,3 +11,5 @@ admin = os.environ.get('ADMINCID')
 STOKEN = os.environ.get('STOKEN')
 
 gadmin = os.environ.get('GADMINCID')
+
+boturi = os.environ.get('BOT_URI')

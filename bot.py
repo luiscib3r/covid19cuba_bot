@@ -41,13 +41,14 @@ Apklis: https://www.apklis.cu/application/club.postdata.covid19cuba
 https://github.com/correaleyval/covid19cuba_bot
 
 💪💻 Partners:
-* Covid19CubaData Developers Team
-* CUSOBU CUBA https://es.cusobucuba.com/
-* DAXSLAB https://www.daxslab.com/
-* SWL-X https://swlx.info/
-* UIC Unión de Informáticos de Cuba
-* Universidad de Oriente https://www.uo.edu.cu/
-'''
+* Covid19CubaData
+(Juventud Técnica, MATCOM-UH y Postdata.club)
+
+* CUSOBU cusobu.nat.cu
+* DAXSLAB daxslab.com
+* SWL-X swlx.info
+* UIC uic.cu
+* Universidad de Oriente uo.edu.cu'''
 
 markup = types.ReplyKeyboardMarkup(row_width=1)
     
